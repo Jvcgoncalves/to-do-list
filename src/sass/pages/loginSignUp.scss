@@ -1,0 +1,151 @@
+.container{
+  min-height: 100vh;
+  min-height: 100dvh;
+  .row{
+    position: relative;
+    max-height: 32rem;
+    height: 100%;
+    place-self: center;
+    background-color: $purple-100;
+    img{
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+    }
+    .squares-block{
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background-color: $purple-700;
+      padding: 2rem 3rem;
+      height: 100%;
+      transition: all 1s ease-in-out;
+      overflow: hidden;
+      
+      .login-page-squares{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        transform: translateY(0);
+        transition: 2s ease-in-out;
+        .checklist-square{
+          border: .5rem solid $gray-1000;
+          width: 8rem;
+          height: 8rem;
+          place-self: center;
+        }
+      }
+
+      .sign-up-page-squares{
+        transform: translateY(-200%);
+        transition: 2s ease-in-out;
+        .checklist-square{
+          width: 100%;
+          max-width: 18.75rem;
+          img{
+            border: .2rem solid $gray-1000;
+            width: 3rem;
+            height: 3rem;
+            padding: .4rem;
+          }
+          span{
+            @include font-style($sriracha, 2.5rem, 100,$gray-1000);
+          }
+        }
+      }
+    }
+
+    .form-block{
+      background-color: $purple-100;
+      height: 100%;
+      padding: 2rem 3rem;
+      transition: all 0s ease-in-out;
+      .page-title{
+        @include font-style($prompt, 2.75rem, 300,$purple-700)
+      }
+  
+      #sign-up-form, #login-form{
+        .forget-password{
+          background-color: transparent;
+          border-color: transparent;
+          @include font-style($prompt, 1rem, 400,$dark-font-color);
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+
+        .form-label{
+          @include font-style($prompt, 1.15rem, 400,$dark-font-color)
+        }
+    
+        .form-control{
+          background-color: $purple-300;
+          @include font-style($prompt, 1rem, 300,$dark-font-color)
+        }
+    
+        .login-btn,.sign-up-btn{
+          position: relative;
+          background-color: $purple-100;
+          border-color: $purple-700;
+          border-width: .15rem;
+          max-width: 12rem;
+          min-width: 8rem;
+          @include font-style($prompt, 1.15rem, 400,$dark-font-color);
+          z-index: 1;
+          transition: .3s ease-in-out;
+    
+          &::before{
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: .2rem;
+            background-color: $purple-700;
+            z-index: -1;
+            transition: width .5s ease-in-out;
+          }
+          
+          &:hover{
+            color: $light-font-color;
+            &::before{
+              width: 100%;
+            }
+          }
+        } // .login-btn end
+  
+        #go-to-login,#go-to-register{
+          background-color: transparent;
+          @include font-style($prompt, 1rem, 400,$dark-font-color);
+          border-color: transparent;
+          max-width: 12rem;
+          min-width: 8rem;
+          & > span{
+            color: $purple-700;
+          }
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      } // #go-to... end
+    }  // .form-block end
+  } // .row end
+} // .container end
+
+.container.signUp{
+  .row{
+    .squares-block{
+      transform: translateX(100%);
+      border-radius: 0 2rem 2rem 0 !important;
+      .login-page-squares{
+        transform: translateY(150%);
+      }
+      .sign-up-page-squares{
+        transform: translateY(-100%);
+      }
+    }
+  }
+}
