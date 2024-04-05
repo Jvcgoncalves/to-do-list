@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LoginFormComponent,SignUpFormComponent],
-  templateUrl: './app.component.html',
+  imports: [RouterOutlet,RouterModule],
+  template: `<router-outlet></router-outlet>`,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
