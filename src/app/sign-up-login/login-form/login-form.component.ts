@@ -15,8 +15,6 @@ import { Router } from '@angular/router';
 
 export class LoginFormComponent {
   @Input() setLoginOrSignUp!: Function;
-  userService = inject(UsersService);
-  router = inject(Router);
   userData!: Users | string;
   formGroupController = new FormGroup({
     email: new FormControl('',[Validators.required, Validators.email]),
@@ -24,7 +22,7 @@ export class LoginFormComponent {
   })
 
   // public router: Router
-  constructor() { }
+  constructor(private router: Router, private userService: UsersService) { }
 
   submitFormAndlogin(){
     if(!this.formGroupController.valid){
