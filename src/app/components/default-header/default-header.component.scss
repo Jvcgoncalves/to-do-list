@@ -1,0 +1,30 @@
+@import "../../../sass/variables/colors/colors.scss";
+@import "../../../sass/variables/fonts/fonts.scss";
+@import "../../../sass/variables/common/common.scss";
+
+.header{
+  width: 100%;
+  height: 5rem;
+  background-color: $purple-900;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1010;
+  
+  .navbar{
+    padding: 0 $padding-x-desktop;
+    .nav-link{
+    max-width: 20rem;
+    .square{
+      border: .2rem solid $gray-100;
+      width: 2rem;
+      height: 2rem;
+      display: inline-block;
+    }
+
+    @include font-style($sriracha, 1.5rem, normal, $light-font-color);
+    text-transform: uppercase;
+  }
+  }
+  
+}

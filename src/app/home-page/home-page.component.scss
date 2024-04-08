@@ -1,0 +1,16 @@
+@import "../../sass/variables/colors/colors.scss";
+@import "../../sass/variables/fonts/fonts.scss";
+@import "../../sass/variables/common/common.scss";
+
+#App{
+  background-color: $gray-200;
+  position: relative;
+}
+.loader{
+  min-height: 100vh;
+}
+
+main.d-grid{
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 'menu main-content';
+}

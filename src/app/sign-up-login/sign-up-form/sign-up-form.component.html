@@ -1,0 +1,33 @@
+<h2 class="page-title mb-4 text-center">Registrar-se</h2>
+<form [formGroup]="formGroupController" id="sign-up-form" (submit)="submitFormAndSignUp()">
+  <div class="mb-3">
+    <label for="sign_up_username" class="form-label">Nome de usuário</label>
+    <input type="text" id="sign_up_username" class="form-control" required placeholder="Joaozinho"
+    formControlName="userName"
+    />
+    <span class="error-message" *ngIf="formGroupController.controls.userName?.touched && formGroupController.controls.userName?.errors">Nome de usuário inválido!</span>
+  </div>
+  <div class="mb-3">
+    <label for="sign_up_email" class="form-label">Email</label>
+    <input type="email" id="sign_up_email" class="form-control" required placeholder="email@email.com"
+    formControlName="email"
+    />
+    <span class="error-message" *ngIf="formGroupController.controls.email?.touched && formGroupController.controls.email?.errors">Email inválido!</span>
+  </div>
+  <div class="mb-3">
+    <label for="sign_up_password" class="form-label">Senha</label>
+    <input type="password" id="sign_up_password" class="form-control" required
+    formControlName="password"
+    />
+  </div>
+  <div class="d-flex flex-column mt-4 gap-2">
+    <button class="btn btn-primary sign-up-btn mx-auto" type="submit">
+      Salvar
+    </button>
+    <button class="btn btn-primary mx-auto" type="button" id="go-to-login"
+    (click)="setLoginOrSignUp()"
+    >
+      Já possui uma conta? <span>entrar</span>
+    </button>
+  </div>
+</form>

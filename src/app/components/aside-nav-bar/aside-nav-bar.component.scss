@@ -1,0 +1,24 @@
+@import "../../../sass/variables/colors/colors.scss";
+@import "../../../sass/variables/fonts/fonts.scss";
+@import "../../../sass/variables/common/common.scss";
+
+.aside-menu{
+  background-color: $purple-800;
+  min-height: calc(100vh - 5rem);
+  min-height: calc(100dvh - 5rem);
+  padding-left: $padding-x-desktop;
+  padding-right: 1rem;
+  width: 100%;
+  grid-area: menu;
+  .navbar{
+    .navbar-nav{
+      gap: 2rem;
+      .nav-item{
+        cursor: pointer;
+        .nav-link{
+          @include font-style($prompt, 1rem, normal, $light-font-color);
+        }
+      }
+    }
+  }
+}

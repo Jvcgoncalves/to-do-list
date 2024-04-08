@@ -1,10 +1,14 @@
-<div class="container d-grid pageAction" >
+<div class="container d-grid {{loginOrSignUp}}" >
   <div class="row w-100 rounded-5">
       <div class="form-block rounded-start-5 col-6">
-        <app-login-form></app-login-form>
+        <app-sign-up-form
+        [setLoginOrSignUp]="setLoginOrSignUp"
+        ></app-sign-up-form>
       </div>
       <div class="form-block rounded-end-5 col-6">
-        <app-sign-up-form></app-sign-up-form>
+        <app-login-form
+        [setLoginOrSignUp]="setLoginOrSignUp"
+        ></app-login-form>
       </div>
     <div class="squares-block d-block rounded-start-5">
       <div class="login-page-squares d-grid gap-3 h-100 w-100">

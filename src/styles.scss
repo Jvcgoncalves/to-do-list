@@ -5,3 +5,7 @@
 @import "./sass/pages/common.scss";
 @import "./sass/pages/loginSignUp.scss";
 @import "./sass/pages/home.scss";
+
+router-outlet{
+  position: absolute;
+}
