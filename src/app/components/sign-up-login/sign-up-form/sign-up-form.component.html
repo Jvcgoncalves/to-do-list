@@ -1,0 +1,79 @@
+<h2 class="page-title mb-2 text-center">{{titleMessage}}</h2>
+<form [formGroup]="formGroupController" id="sign-up-form" (submit)="submitFormAndSignUp()" *ngIf="signUpResponse !== 'user registed'; else userRegisteredResponse">
+  <div class="mb-1">
+    <label for="sign_up_username" class="form-label">Nome de usuário</label>
+    <input type="text" id="sign_up_username" class="form-control" required placeholder="Joaozinho"
+    formControlName="userName"
+    (keypress)="controlInput($event)"
+    />
+    <div class="error-block">
+      <span class="error-message" *ngIf="formGroupController.controls.userName.value?.length === 0 && formGroupController.controls.userName.touched; else elseUserName">Campo obrigatório *</span>
+      <ng-template #elseUserName>  
+        <span class="error-message"
+        *ngIf="formGroupController.get('userName')?.hasError('invalidUserName')"
+        >Nome de só pode conter letras</span> 
+      </ng-template>
+    </div>
+  </div>
+  <div class="mb-1">
+    <label for="sign_up_email" class="form-label">Email</label>
+    <input type="email" id="sign_up_email" class="form-control" required placeholder="email@email.com"
+    formControlName="email"
+    />
+    <div class="error-block">
+      <span class="error-message" *ngIf="formGroupController.get('email')?.hasError('email') && formGroupController.controls.email.touched; else elseEmail">Email inválido</span>
+      <ng-template #elseEmail>  
+        <span class="error-message"
+        *ngIf="formGroupController.controls.email.value?.length === 0 && formGroupController.controls.email.touched; else elseEmail_2"
+        >Campo obrigatório *</span> 
+      </ng-template>
+      <ng-template #elseEmail_2>
+        <span class="error-message"
+        *ngIf="formGroupController.controls.email.touched && formGroupController.controls.email.hasError('invalidEmail')"
+        >
+          Mín. 3 caracteres antes e 3 depois do &#64;
+        </span>
+      </ng-template>
+    </div>
+  </div>
+  <div class="mb-1">
+    <label for="sign_up_password" class="form-label">Senha</label>
+    <input type="password" id="sign_up_password" class="form-control" required
+    formControlName="password"
+    />
+    <div class="error-block">
+      <span class="error-message" *ngIf="formGroupController.controls.password.value?.length === 0 && formGroupController.controls.password.touched; else elsePassword">
+        Campo obrigatório *
+      </span>
+      <ng-template #elsePassword>
+        <span class="error-message" 
+        *ngIf="formGroupController.controls.password.touched && formGroupController.get('password')?.errors" 
+        >
+          A senha deve possuir no mínimo 3 caracteres
+        </span>
+      </ng-template>
+    </div>
+  </div>
+  <div class="d-flex flex-column mt-3 gap-2">
+    <button class="btn btn-primary sign-up-btn mx-auto" type="submit"
+    [disabled]="!formGroupController.valid"
+    >
+      Salvar
+    </button>
+    <button class="btn btn-primary mx-auto py-0" type="button" id="go-to-login"
+    (click)="setLoginOrSignUp()"
+    >
+      Já possui uma conta? <span>entrar</span>
+    </button>
+  </div>
+</form>
+<ng-template #userRegisteredResponse>
+  <div class="userRegistered my-4 d-flex align-items-center gap-3 flex-column">
+    <h3>Usuário registrado com sucesso</h3>
+    <button type="button" class="btn btn-primary redirect-btn"
+    (click)="[setLoginOrSignUp(),restartSignUp()]"
+    >
+      Fazer login
+    </button>
+  </div>
+</ng-template>

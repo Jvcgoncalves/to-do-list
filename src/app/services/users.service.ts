@@ -20,8 +20,16 @@ export class UsersService {
     return await userData.json() ?? {}
   }
 
-  sendFormAndSignUp({ email, password, userName }: { email: string, password: string, userName: string }){
-    console.log({email,password,userName});
+  sendFormAndSignUp = async ({ email, password, userName }: { email: string, password: string, userName: string }): Promise<string> => {
+    const response = await fetch(`${this.url}`,{
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password, userName })
+    })
+    
+    return response.text()
   }
 
   getUserData = async ({userId}: {userId: string}): Promise<Users> => {

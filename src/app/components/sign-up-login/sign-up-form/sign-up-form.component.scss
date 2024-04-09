@@ -1,0 +1,45 @@
+@import "../../../../sass/variables/colors/colors.scss";
+@import "../../../../sass/variables/fonts/fonts.scss";
+
+.error-block{
+  height: 1.25rem;
+  vertical-align: middle;
+  line-height: 1.25rem;
+  .error-message{
+    @include font-style( $prompt, .75rem, normal, $light-red )
+  }
+}
+
+.userRegistered{
+  .redirect-btn{
+    position: relative;
+    background-color: $purple-100;
+    border-color: $purple-700;
+    border-width: .15rem;
+    max-width: 12rem;
+    min-width: 8rem;
+    @include font-style($prompt, 1.15rem, 400,$dark-font-color);
+    z-index: 1;
+    transition: .3s ease-in-out;
+
+    &::before{
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: .2rem;
+      background-color: $purple-700;
+      z-index: -1;
+      transition: width .5s ease-in-out;
+    }
+    
+    &:hover{
+      color: $light-font-color;
+      &::before{
+        width: 100%;
+      }
+    }
+  } // .login-btn end
+}

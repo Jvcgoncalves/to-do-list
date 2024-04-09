@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { SignUpLoginComponent } from './sign-up-login/sign-up-login.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { TaskComponent } from './components/task/task.component';
+import { SignUpLoginComponent } from './components/sign-up-login/sign-up-login.component';
+import { DefaultlayoutComponent } from './components/default-layout/default-layout.component';
+import { HomePageComponent } from './components/default-layout/home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -11,12 +11,12 @@ const routes: Routes = [
   },
   {
     path: "home/:userId",
-    component: HomePageComponent,
+    component: DefaultlayoutComponent,
     title: "Home Page",
     children: [
       {
         path: "",
-        component: TaskComponent,
+        component: HomePageComponent,
       }
     ]
   }

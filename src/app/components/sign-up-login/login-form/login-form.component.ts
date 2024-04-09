@@ -1,8 +1,8 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { UsersService } from '../../services/users.service';
-import { Users } from '../../interfaces/users';
+import { UsersService } from '../../../services/users.service';
+import { Users } from '../../../interfaces/users';
 import { Router } from '@angular/router';
 
 @Component({

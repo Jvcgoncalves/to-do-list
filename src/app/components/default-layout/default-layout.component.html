@@ -1,6 +1,6 @@
 <div id="App">
   <app-default-header></app-default-header>
-  <main class="d-grid" *ngIf="userData && userData._id; else elseBlock">
+  <main class="d-grid" *ngIf="userData !== undefined && userData._id; else elseBlock">
     <app-aside-nav-bar
     [userId]="userData._id"
     ></app-aside-nav-bar>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-task',
@@ -7,10 +7,16 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="content">
       <p>{{userId}}</p>
+      <p>aaaa</p>
     </div>
   `,
   styleUrl: './task.component.scss'
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   @Input() userId!: string;
+
+  ngOnInit(): void {
+    console.log(this.userId);
+      
+  }
 }

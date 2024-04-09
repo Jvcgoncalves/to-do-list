@@ -1,0 +1,9 @@
+@import "../../../../sass/variables/colors/colors.scss";
+@import "../../../../sass/variables/fonts/fonts.scss";
+
+.error-block{
+  height: 1rem;
+  .error-message{
+    @include font-style( $prompt, 1rem, normal, $light-red )
+  }
+}

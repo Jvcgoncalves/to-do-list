@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
 @Component({
   selector: 'app-sign-up-login',
@@ -10,10 +10,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
   styleUrl: './sign-up-login.component.scss'
 })
 export class SignUpLoginComponent {
-  loginOrSignUp: String = "login"
+  loginOrSignUp: String = "signUp"
   
   setLoginOrSignUp = (): void => {
-    if(this.loginOrSignUp === "login"){
+    if(this.loginOrSignUp === "login"){ 
       this.loginOrSignUp = "signUp"
     } else if(this.loginOrSignUp === "signUp"){
       this.loginOrSignUp = "login"
