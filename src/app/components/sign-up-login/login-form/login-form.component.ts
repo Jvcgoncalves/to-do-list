@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../../services/users.service';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './login-form.component.scss'
 })
 
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   @Input() setLoginOrSignUp!: Function;
   userData!: Users | string;
   formGroupController = new FormGroup({
@@ -37,8 +37,11 @@ export class LoginFormComponent {
       console.log(res);
       this.userData = res
       console.log(this.userData);
+
       if(typeof this.userData !== "string"){
         this.router.navigate(["home",`${this.userData._id}`])
+        localStorage.setItem("userLogged","true")
+        localStorage.setItem("userLoggedId",`${this.userData._id}`)
       }
 
     }).catch(e=>{
@@ -46,4 +49,10 @@ export class LoginFormComponent {
     })
   }
 
+  ngOnInit(): void {
+    if(localStorage.getItem("userLogged") === "true"){
+      const userId = localStorage.getItem("userLoggedId")
+      this.router.navigate(["home",`${userId}`])
+    }
+  }
 }

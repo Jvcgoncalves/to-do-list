@@ -9,14 +9,19 @@
   padding-left: $padding-x-desktop;
   padding-right: 1rem;
   width: 100%;
-  grid-area: menu;
+  position: sticky;
+  left: 0;
+  top: 5rem;
   .navbar{
     .navbar-nav{
       gap: 2rem;
       .nav-item{
         cursor: pointer;
         .nav-link{
-          @include font-style($prompt, 1rem, normal, $light-font-color);
+          img{
+            width: 2.5rem
+          }
+          @include font-style($prompt, 1.1rem, normal, $light-font-color);
         }
       }
     }

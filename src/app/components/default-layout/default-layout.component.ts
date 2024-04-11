@@ -27,11 +27,9 @@ export class DefaultlayoutComponent implements OnInit {
     
     this.userService.getUserData({userId}).then(res =>{
       this.userData = res
-
     }).catch(e => {
       console.log(e);
     })
-    console.log(userId);
 
   }
 }

@@ -1,1 +1,21 @@
-<p>home-page works!</p>
+<div class="container">
+  <h2 class="page-title m-0">TODO LIST</h2>
+  <nav class="navbar">
+    <ul class="navbar-nav flex-row gap-4">
+      <li class="nav-item">
+        <a routerLink="/home/{{userId}}" routerLinkActive="active" class="nav-link">
+          Todas as tarefas
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add-new-task" routerLinkActive="active" class="nav-link">
+          Adicionar tarefas
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <form class="search-form">
+    
+  </form>
+  <router-outlet></router-outlet>
+</div>

@@ -10,7 +10,7 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
   styleUrl: './sign-up-login.component.scss'
 })
 export class SignUpLoginComponent {
-  loginOrSignUp: String = "signUp"
+  loginOrSignUp: String = "login"
   
   setLoginOrSignUp = (): void => {
     if(this.loginOrSignUp === "login"){ 

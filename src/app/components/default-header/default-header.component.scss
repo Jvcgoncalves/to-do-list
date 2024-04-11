@@ -14,17 +14,52 @@
   .navbar{
     padding: 0 $padding-x-desktop;
     .nav-link{
-    max-width: 20rem;
-    .square{
-      border: .2rem solid $gray-100;
-      width: 2rem;
-      height: 2rem;
-      display: inline-block;
-    }
+      max-width: 20rem;
+      .square{
+        position: relative;
+        border: .2rem solid $gray-100;
+        width: 2rem;
+        height: 2rem;
+        display: inline-block;
+        transition: all .5s ease-in-out;
+        z-index: -1;
 
-    @include font-style($sriracha, 1.5rem, normal, $light-font-color);
-    text-transform: uppercase;
-  }
+        &::after{
+          content: "";
+          position: absolute;
+          border: .22rem solid $gray-100;
+          width: 2rem;
+          z-index: 1000;
+          height: 2rem;
+          left: -.15rem;
+          top: -.175rem;
+          display: inline-block;
+          transition: border-color .3s ease-in-out, border-radius .5s ease-in-out, transform .3s ease-in-out;
+          z-index: 1020;
+        }
+      }
+
+      @include font-style($sriracha, 1.5rem, normal, $light-font-color);
+      text-transform: uppercase;
+
+      &:hover{
+        .square{
+          border-color: transparent;
+          transition: all 0s ease-in-out;
+          &::after{
+            border-color: $light-green;
+            border-width: .24rem;
+            border-left-color: transparent;
+            border-top-color: transparent;
+            border-radius: .2rem 0;
+            top: -1rem;
+            transform: rotateZ(40deg);
+            width: 1.5rem;
+            height: 2.75rem;
+          }
+        }
+      }
+    }
   }
   
 }

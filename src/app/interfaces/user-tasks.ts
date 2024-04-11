@@ -3,5 +3,6 @@ export interface UserTasks {
   done: boolean,
   description: string,
   delivery_date: string,
+  register_date: string,
   userId: string
 }

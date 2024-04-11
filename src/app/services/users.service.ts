@@ -6,7 +6,7 @@ import { Users } from '../interfaces/users';
 })
 export class UsersService {
 
-  url = "http://localhost:3000/users/";
+  url: string = "http://localhost:3000/users/";
 
   constructor() { }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
       <nav class="navbar h-100 w-100 mx-auto">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a routerLink="home/:userId" class="nav-link d-flex align-items-center gap-3">
+            <a [routerLink]="routerPath" class="nav-link d-flex align-items-center gap-3">
               <span class="square"></span>
               manage your tasks
             </a>
@@ -21,6 +21,10 @@ import { RouterModule } from '@angular/router';
   `,
   styleUrl: './default-header.component.scss'
 })
-export class DefaultHeaderComponent {
+export class DefaultHeaderComponent implements OnInit {
+  routerPath!: string | null
 
+  ngOnInit(): void {
+    this.routerPath = `/home/${localStorage.getItem('userLoggedId')}`
+  }
 }

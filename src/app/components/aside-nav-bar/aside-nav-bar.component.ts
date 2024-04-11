@@ -11,9 +11,11 @@ import { Users } from '../../interfaces/users';
     <aside class="aside-menu py-5 col-3">
       <nav class="navbar w-100">
         <ul class="navbar-nav w-100 flex-column" >
-          <li class="nav-item w-100 d-flex gap-3" *ngFor="let liElement of liElements">
-            <img [src]="liElement.imgSrc" [alt]="liElement.alt">
-            <a [routerLink]="liElement.goTo" class="nav-link">
+          <li class="nav-item w-100" *ngFor="let liElement of liElements">
+            <a [routerLink]="liElement.goTo" class="nav-link w-100 align-middle"
+            (click)="signOut($event)"
+            >
+              <img [src]="liElement.imgSrc" [alt]="liElement.alt" class="me-2">
               {{liElement.text}}
             </a>
           </li>
@@ -37,24 +39,34 @@ export class AsideNavBarComponent implements OnInit {
         text: "Tarefas",
         goTo: `/home/${this.userId}`
       },
-      {
-        imgSrc: "../../assets/settings.svg",
-        alt: "settings-icon",
-        text: "Configurações",
-        goTo: ""
-      },
+      // {
+      //   imgSrc: "../../assets/settings.svg",
+      //   alt: "settings-icon",
+      //   text: "Configurações",
+      //   goTo: ""
+      // },
       {
         imgSrc: "../../assets/user.svg",
         alt: "user-icon",
         text: "Perfil",
-        goTo: ""
+        goTo: `/home/${this.userId}/profile`
       },
       {
-        imgSrc: "../../assets/sign_out.svg",
+        imgSrc: "../../assets/sign_out.png",
         alt: "sign out-icon",
         text: "Sair",
-        goTo: ""
+        goTo: "/"
       }
     ]
+  }
+
+  signOut(ev: Event){
+    const currentTarget = ev.target as HTMLElement
+    
+    if(currentTarget.getAttribute("href") === "/"){
+      localStorage.setItem("userLogged","false")
+      localStorage.setItem("userLoggedId",``)
+    }
+        
   }
 }
