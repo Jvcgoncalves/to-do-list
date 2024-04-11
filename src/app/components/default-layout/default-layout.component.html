@@ -7,10 +7,19 @@
     <router-outlet></router-outlet>
   </main>
   <ng-template #elseBlock>
-    <div class="loader d-grid">
+    <div *ngIf="!responseReturnsError; else responseError" class="loader d-grid">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
+    </div>
+  </ng-template>
+  <ng-template #responseError>
+    <div class="response-error text-center">
+      <p class="mb-1">Não foi possível carregar a página</p>
+      <p class="mb-3">Problemas internos :( </p>
+      <button class="btn btn-primary" (click)="signOut()">
+        Sair
+      </button>
     </div>
   </ng-template>
 </div>

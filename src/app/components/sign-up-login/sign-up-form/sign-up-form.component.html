@@ -12,6 +12,7 @@
         <span class="error-message"
         *ngIf="formGroupController.get('userName')?.hasError('invalidUserName')"
         >Nome de só pode conter letras</span> 
+        <span class="error-message" *ngIf="serverError">Problemas no servidor, tente novamente mais tarde</span>
       </ng-template>
     </div>
   </div>
@@ -33,6 +34,7 @@
         >
           Mín. 3 caracteres antes e 3 depois do &#64;
         </span>
+        <span class="error-message" *ngIf="serverError">Problemas no servidor, tente novamente mais tarde</span>
       </ng-template>
     </div>
   </div>
@@ -51,6 +53,7 @@
         >
           A senha deve possuir no mínimo 3 caracteres
         </span>
+        <span class="error-message" *ngIf="serverError">Problemas no servidor, tente novamente mais tarde</span>
       </ng-template>
     </div>
   </div>

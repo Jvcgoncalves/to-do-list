@@ -16,6 +16,7 @@ export class SignUpFormComponent {
   usersController = inject(UsersService)
   signUpResponse!: string | null;
   titleMessage: string = "Registrar-se";
+  serverError: boolean = false;
 
   formGroupController = new FormGroup({
     email: new FormControl('',[Validators.required, Validators.email, this.validateUserEmail()]),
@@ -42,7 +43,7 @@ export class SignUpFormComponent {
       if(this.signUpResponse === "email already registered") return alert("Este email já está sendo usado")
       this.titleMessage = "Registrado!"
     }).catch(e => {
-      console.log(e);
+      this.serverError = true
     })
   }
 

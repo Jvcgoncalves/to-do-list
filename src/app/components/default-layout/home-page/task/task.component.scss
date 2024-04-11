@@ -7,11 +7,12 @@
 }
 
 .content{
-  grid-template-columns: repeat(3, minmax(16rem, 17.25rem)) ;
+  grid-template-columns: repeat(3, 17.5rem) ;
+
   .task-block{
     background-color: $gray-100;
     width: 100%;
-    height: 17rem;
+    height: 16rem;
 
     .task-title{
       @include font-style($sriracha, 1.5rem, normal, $purple-800);
@@ -23,9 +24,7 @@
 
     .description{
       width: 100%;
-
       .task-description-title,.task-description{
-        width: 100%;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -34,6 +33,23 @@
       .task-description{
         font-size: 1rem;
       }
+    }
+
+    .task-dates-block{
+      .tast-dates{
+        @include font-style($prompt, 1rem, 400, $dark-font-color);
+        &:last-child{
+          font-weight: 500  
+        }
+      }
+    }
+    .see-more-button{
+      background-color: $purple-700;
+      border-color: $purple-700;
+      max-width: 8rem;
+      width: 100%;
+      @include font-style($prompt, 1.15rem, 300, $light-font-color);
+      line-height: 1.75rem;
     }
   }
 }

@@ -19,8 +19,9 @@ export class DefaultlayoutComponent implements OnInit {
   userData!: Users;
   userTasks!: UserTasks[];
   router: ActivatedRoute = inject(ActivatedRoute);
+  responseReturnsError: boolean = false;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private workRoutes: Router) { }
 
   ngOnInit(): void {
     const userId = this.router.snapshot.params['userId']
@@ -28,8 +29,13 @@ export class DefaultlayoutComponent implements OnInit {
     this.userService.getUserData({userId}).then(res =>{
       this.userData = res
     }).catch(e => {
-      console.log(e);
+      this.responseReturnsError = true
     })
+  }
 
+  signOut(){
+    localStorage.setItem("userLogged","false")
+    localStorage.setItem("userLoggedId",``)
+    this.workRoutes.navigate([""])
   }
 }

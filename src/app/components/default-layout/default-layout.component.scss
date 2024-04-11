@@ -5,18 +5,35 @@
 #App{
   background-color: $gray-200;
   position: relative;
-}
-.loader{
-  min-height: calc(100vh - 5rem);
-  min-height: calc(100dvh - 5rem);
-  place-items: center;
-  .spinner-border{
-    width: 5rem;
-    height: 5rem;
+
+  .response-error{
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    display: grid;
+    place-content: center;
+    @include font-style($prompt, 1.5rem, 400, $dark-font-color);
+
+    .btn{
+      background-color: $purple-900;
+      border-color: $purple-900 ;
+      max-width: 8rem;
+      width: 100%;
+      margin: 0 auto;
+      @include font-style($prompt, 1.1rem, 400, $light-font-color);      
+    }
+  }
+
+  .loader{
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    place-items: center;
+    .spinner-border{
+      width: 5rem;
+      height: 5rem;
+    }
   }
 }
 
 main.d-grid{
   grid-template-columns: 1fr 4fr;
-  grid-template-areas: 'menu main-content';
 }

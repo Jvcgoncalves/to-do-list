@@ -4,6 +4,7 @@
 
 .container{
   padding: 2rem $padding-x-desktop ;
+  width: 100%;
 
   .page-title{
     @include font-style($sriracha, 2rem, bold, $purple-800);

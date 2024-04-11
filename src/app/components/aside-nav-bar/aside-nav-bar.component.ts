@@ -21,7 +21,6 @@ import { Users } from '../../interfaces/users';
           </li>
         </ul>
       </nav>
-      
     </aside>
   `,
   styleUrl: './aside-nav-bar.component.scss'
@@ -37,7 +36,7 @@ export class AsideNavBarComponent implements OnInit {
         imgSrc: "../../assets/task.svg",
         alt: "task-icon",
         text: "Tarefas",
-        goTo: `/home/${this.userId}`
+        goTo: `/user-logged/${this.userId}`
       },
       // {
       //   imgSrc: "../../assets/settings.svg",
@@ -49,11 +48,11 @@ export class AsideNavBarComponent implements OnInit {
         imgSrc: "../../assets/user.svg",
         alt: "user-icon",
         text: "Perfil",
-        goTo: `/home/${this.userId}/profile`
+        goTo: `/user-logged/${this.userId}/profile`
       },
       {
         imgSrc: "../../assets/sign_out.png",
-        alt: "sign out-icon",
+        alt: "sign-out-icon",
         text: "Sair",
         goTo: "/"
       }
@@ -63,10 +62,10 @@ export class AsideNavBarComponent implements OnInit {
   signOut(ev: Event){
     const currentTarget = ev.target as HTMLElement
     
-    if(currentTarget.getAttribute("href") === "/"){
+    if(currentTarget.getAttribute("href") === "/" || currentTarget.getAttribute("alt") === "sign-out-icon"){
+      
       localStorage.setItem("userLogged","false")
       localStorage.setItem("userLoggedId",``)
-    }
-        
+    }   
   }
 }

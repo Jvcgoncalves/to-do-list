@@ -12,19 +12,18 @@ const routes: Routes = [
     title: "Sign Up - Login Page"
   },
   {
-    path: "home/:userId",
+    path: "user-logged/:userId",
     component: DefaultlayoutComponent,
-    title: "Home Page",
     children: [
       {
         path: "",
         component: HomePageComponent,
+        title: "Home Page",
         children: [
           {
             path: "",
             component: TaskComponent
           }
-
         ]
       },
       {

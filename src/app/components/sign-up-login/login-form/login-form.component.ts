@@ -20,13 +20,12 @@ export class LoginFormComponent implements OnInit {
     email: new FormControl('',[Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required])
   })
+  serverError: boolean = false
 
-  // public router: Router
   constructor(private router: Router, private userService: UsersService) { }
 
   submitFormAndlogin(){
     if(!this.formGroupController.valid){
-      alert("Form inválido")
       return
     }
 
@@ -39,20 +38,20 @@ export class LoginFormComponent implements OnInit {
       console.log(this.userData);
 
       if(typeof this.userData !== "string"){
-        this.router.navigate(["home",`${this.userData._id}`])
+        this.router.navigate(["user-logged",`${this.userData._id}`])
         localStorage.setItem("userLogged","true")
         localStorage.setItem("userLoggedId",`${this.userData._id}`)
       }
 
     }).catch(e=>{
-      console.log(e);
+      this.serverError = true
     })
   }
 
   ngOnInit(): void {
     if(localStorage.getItem("userLogged") === "true"){
       const userId = localStorage.getItem("userLoggedId")
-      this.router.navigate(["home",`${userId}`])
+      this.router.navigate(["user-logged",`${userId}`])
     }
   }
 }
