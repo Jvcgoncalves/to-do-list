@@ -6,50 +6,108 @@
   place-content: center;
 }
 
-.content{
-  grid-template-columns: repeat(3, 17.5rem) ;
+.error-block{
+  @include font-style($prompt, 1.25rem, 400, $dark-font-color);
+  min-height: 100%;
+}
 
-  .task-block{
-    background-color: $gray-100;
-    width: 100%;
-    height: 16rem;
+.main-content{
 
-    .task-title{
-      @include font-style($sriracha, 1.5rem, normal, $purple-800);
-      max-width: 80%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+  .search-form{
+    .input-block{
+      position: relative;
+      max-width: 25rem;
+      margin-left: auto;
+      height: 2.5rem;
+      .form-control{
+        width: 100%;
+        height: 100%;
+        background-color: $gray-200;
+        border: .1rem solid $purple-800;
+        padding-right: 2.1rem;
+
+        &:focus{
+          box-shadow: none;
+        }
+      }
+      .floating-label{
+        position: absolute;
+        padding: 1rem;
+        bottom: -.45rem;
+        z-index: 2;
+        @include font-style($prompt, .9rem, normal, #575656);
+        transition: all .3s ease-in-out;
+
+      }
+      & > .form-control:focus~.floating-label, & > .form-control:not(:placeholder-shown)~.floating-label{
+        transform: translateY(-170%) translateX(1rem);
+        color: $dark-font-color;
+        padding: 0 .5rem;
+        background-color: $gray-200;
+      }
+
+      .search-icon{
+        width: 1.5rem;
+        position: absolute;
+        bottom: .5rem;
+        right: .5rem;
+      }
     }
+  }
 
-    .description{
+  .content{
+    grid-template-columns: repeat(3, 17.5rem);
+  
+    .task-block{
+      background-color: $gray-100;
       width: 100%;
-      .task-description-title,.task-description{
+      height: 16rem;
+  
+      .task-title{
+        @include font-style($sriracha, 1.5rem, normal, $purple-800);
+        max-width: 80%;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        @include font-style($prompt, 1.15rem, normal, $dark-font-color);
       }
-      .task-description{
-        font-size: 1rem;
-      }
-    }
-
-    .task-dates-block{
-      .tast-dates{
-        @include font-style($prompt, 1rem, 400, $dark-font-color);
-        &:last-child{
-          font-weight: 500  
+  
+      .description{
+        width: 100%;
+        .task-description-title,.task-description{
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          @include font-style($prompt, 1.15rem, normal, $dark-font-color);
+        }
+        .task-description{
+          font-size: 1rem;
         }
       }
+  
+      .task-dates-block{
+        .tast-dates{
+          @include font-style($prompt, 1rem, 400, $dark-font-color);
+          &:last-child{
+            font-weight: 500  
+          }
+        }
+      }
+      .see-more-button{
+        background-color: $purple-700;
+        border-color: $purple-700;
+        max-width: 8rem;
+        width: 100%;
+        @include font-style($prompt, 1.15rem, 300, $light-font-color);
+        line-height: 1.75rem;
+      }
     }
-    .see-more-button{
-      background-color: $purple-700;
-      border-color: $purple-700;
-      max-width: 8rem;
-      width: 100%;
-      @include font-style($prompt, 1.15rem, 300, $light-font-color);
-      line-height: 1.75rem;
+  }
+}
+
+@media (max-width: 1350px) {
+  .main-content{
+    .content{
+      grid-template-columns: repeat(2, calc(50% - 1.5rem)) ;
     }
   }
 }

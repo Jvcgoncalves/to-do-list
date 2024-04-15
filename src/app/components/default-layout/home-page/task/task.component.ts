@@ -2,49 +2,76 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UserTasksService } from '../../../../services/user-tasks.service';
 import { UserTasks } from '../../../../interfaces/user-tasks';
 import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   template: `
-  <div class="content d-grid row-gap-4 column-gap-5">
-    <article class="task-block p-2 rounded-3 d-flex flex-column" *ngFor="let task of userAllTasks">
-      <div class="title-box mb-2 d-flex justify-content-between align-items-center">
-        <h3 class="task-title m-0">{{task.name}}</h3>
-        <img *ngIf="task.done; else elseDoneIcon" src="../../../../../assets/status_checkbox-right.svg" alt="status-box">
-        <ng-template #elseDoneIcon>
-          <img src="../../../../../assets/status_checkbox-x.svg" alt="status-box">
-        </ng-template>
+  <div class="main-content">
+    <form [formGroup]="searchTasksFormController" class="search-form mb-3">
+      <div class="input-block">
+        <input type="text" id="search-tasks-input" class="form-control"
+        formControlName="searchBar"
+        placeholder=" "
+        autocomplete="off"
+        (input)="searchByTyping()"
+        >
+        <label for="search-tasks-input" class="floating-label">
+          Pesquise uma tarefa pelo nome:
+        </label>
+        <img src="../../../../../assets/search-icon.svg" alt="" class="search-icon">
       </div>
-      <div class="description m-0 mt-2">
-        <h4 class="task-description-title mb-1">Descrição:</h4>
-        <p class="task-description mb-1">{{task.description}}</p>
-      </div>
-      <div class="task-dates-block m-0 mt-2">
-        <p class="tast-dates mb-1">Registro: {{task.register_date}}</p>
-        <p class="tast-dates mb-1">Data de entrega: {{task.delivery_date}}</p>
-      </div>
-      <button type="button" class="btn btn-primary rounded-3 mt-4 see-more-button mx-auto">Detalhes</button>
-    </article>
-    <div *ngIf="responseReturnError === true; else elseTasks_2">
-      <p>Não foi possível carregar suas tasks :(</p>
-    </div>
-    <ng-template #elseTasks_2>
-      <div  *ngIf="!userAllTasks" class="loader d-grid">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+    </form>
+    <div class="content 
+    {{responseReturnError === false && userAllTasks !== undefined ? 'd-grid row-gap-4 column-gap-5' : 'd-flex'}}
+    ">
+      <article class="task-block p-2 rounded-3 d-flex flex-column" *ngFor="let task of tasksToShow">
+        <div class="title-box mb-2 d-flex justify-content-between align-items-center">
+          <h3 class="task-title m-0">{{task.name}}</h3>
+          <img *ngIf="task.done; else elseDoneIcon" src="../../../../../assets/status_checkbox-right.svg" alt="status-box">
+          <ng-template #elseDoneIcon>
+            <img src="../../../../../assets/status_checkbox-x.svg" alt="status-box">
+          </ng-template>
         </div>
+        <div class="description m-0 mt-2">
+          <h4 class="task-description-title mb-1">Descrição:</h4>
+          <p class="task-description mb-1">{{task.description}}</p>
+        </div>
+        <div class="task-dates-block m-0 mt-2">
+          <p class="tast-dates mb-1">Registro: {{task.register_date}}</p>
+          <p class="tast-dates mb-1">Data de entrega: {{task.delivery_date}}</p>
+        </div>
+        <a routerLink="/user-logged/{{userId}}/task/{{task._id}}" class="btn btn-primary rounded-3 mt-4 see-more-button mx-auto">Detalhes
+
+        </a>
+      </article>
+      <div class="error-block w-100 text-center" *ngIf="responseReturnError === true; else elseTasks_2">
+        <p>Não foi possível carregar suas tasks :(</p>
       </div>
-    </ng-template>
+      <ng-template #elseTasks_2>
+        <div  *ngIf="!userAllTasks" class="loader d-grid mx-auto">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
   </div>
   `,
-  styleUrl: './task.component.scss'
+  styleUrl: './task.component.scss',
 })
 export class TaskComponent implements OnInit {
   @Input() userId!: string | null;
+  @Input() tasksToShow!: UserTasks[] | [];
   userAllTasks!:  UserTasks[] | [];
-  responseReturnError: boolean = false;
+  searchTasksFormController = new FormGroup({
+    searchBar: new FormControl('')
+  })
+
+  responseReturnError: boolean | null = null;
 
   constructor(private taskService: UserTasksService) { }
 
@@ -53,11 +80,20 @@ export class TaskComponent implements OnInit {
     this.taskService.getAllUserTasks({userId: this.userId}).then(res =>{
       if(Array.isArray(res)){
         this.userAllTasks = res
+        this.tasksToShow = res
+        this.responseReturnError = false
       } else {
-        !this.responseReturnError 
+        this.responseReturnError = true
       }
     }).catch( e =>{
-      console.log(e);
+      this.responseReturnError = true
     })
+  }
+
+  searchByTyping(){    
+    if(this.responseReturnError) return
+    
+    const nameTypedByUser = this.searchTasksFormController.value.searchBar
+    this.tasksToShow = this.userAllTasks.filter(task => task.name.trim().toLowerCase().match(nameTypedByUser?.trim().toLowerCase() || ""))
   }
 }

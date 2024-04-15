@@ -3,7 +3,6 @@ import { DefaultHeaderComponent } from '../default-header/default-header.compone
 import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AsideNavBarComponent } from '../aside-nav-bar/aside-nav-bar.component';
 import { Users } from '../../interfaces/users';
-import { UserTasks } from '../../interfaces/user-tasks';
 import { UsersService } from '../../services/users.service';
 import { TaskComponent } from './home-page/task/task.component';
 import { CommonModule } from '@angular/common';
@@ -13,11 +12,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [DefaultHeaderComponent,AsideNavBarComponent,TaskComponent,RouterOutlet,RouterModule,CommonModule],
   templateUrl: './default-layout.component.html',
-  styleUrl: './default-layout.component.scss'
+  styleUrl: './default-layout.component.scss',
 })
 export class DefaultlayoutComponent implements OnInit {
   userData!: Users;
-  userTasks!: UserTasks[];
   router: ActivatedRoute = inject(ActivatedRoute);
   responseReturnsError: boolean = false;
 

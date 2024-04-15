@@ -36,7 +36,7 @@ export class AsideNavBarComponent implements OnInit {
         imgSrc: "../../assets/task.svg",
         alt: "task-icon",
         text: "Tarefas",
-        goTo: `/user-logged/${this.userId}`
+        goTo: `/user-logged/${this.userId}/tasks`
       },
       // {
       //   imgSrc: "../../assets/settings.svg",

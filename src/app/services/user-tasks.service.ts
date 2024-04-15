@@ -19,4 +19,27 @@ export class UserTasksService {
 
     return response.json()
   }
+  // name, description, delivery_date, register_date
+  postNewUserTasks = async ({name, description, delivery_date, userId}: {name: string, description: string, delivery_date: string, userId: string}): Promise<string> =>{
+    
+    const response = await fetch(`${this.url}/${userId}`, {
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( { data: {name, description, delivery_date } } )
+    })
+
+    return response.json()
+  }
+
+  getSingleTask = async ({userId,taskId}: {userId: string, taskId: string}): Promise<UserTasks | string> => {
+    const response = await fetch(`${this.url}/${userId}/${taskId}`,{
+      method: "GET",
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    return response.json()
+  }
 }

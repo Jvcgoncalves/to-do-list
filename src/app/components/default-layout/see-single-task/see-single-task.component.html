@@ -1,0 +1,12 @@
+<div class="container">
+  <div  *ngIf="!task && !getError" class="loader d-grid">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div class="error-block" *ngIf="getError">
+    <p>
+      Problemas internos no servidor :(
+    </p>
+  </div>
+</div>

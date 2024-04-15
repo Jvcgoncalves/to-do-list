@@ -1,0 +1,35 @@
+@import "../../../../../sass/variables/colors/colors.scss";
+@import "../../../../../sass/variables/fonts/fonts.scss";
+@import "../../../../../sass/variables/common/common.scss";
+
+.main-content{
+  .response-to-user{
+    @include font-style($prompt, 1rem, 400, $dark-font-color);
+    display: inline-block;
+  }
+
+  .form{
+
+    .form-label{
+      @include font-style($prompt, 1rem, 400, $dark-font-color);
+    }
+
+    .btn.btn-primary{
+      background-color: $purple-700;
+      border-color: $purple-700;
+      width: 7rem;
+      @include font-style($prompt, 1.15rem, 300, $light-font-color);
+      line-height: 1.75rem;
+      justify-self: center;
+    }
+
+    .error-block{
+      height: 1.25rem;
+      vertical-align: middle;
+      line-height: 1.25rem;
+      .error-message{
+        @include font-style( $prompt, .75rem, normal, $light-red )
+      }
+    }
+  }
+}

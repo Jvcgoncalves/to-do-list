@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Inject, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../../services/users.service';
@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
     password: new FormControl('',[Validators.required])
   })
   serverError: boolean = false
-
+  
   constructor(private router: Router, private userService: UsersService) { }
 
   submitFormAndlogin(){
@@ -38,7 +38,7 @@ export class LoginFormComponent implements OnInit {
       console.log(this.userData);
 
       if(typeof this.userData !== "string"){
-        this.router.navigate(["user-logged",`${this.userData._id}`])
+        this.router.navigate(["user-logged",`${this.userData._id}`,"tasks"])
         localStorage.setItem("userLogged","true")
         localStorage.setItem("userLoggedId",`${this.userData._id}`)
       }

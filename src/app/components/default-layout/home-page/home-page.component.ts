@@ -7,10 +7,11 @@ import { UserTasksService } from '../../../services/user-tasks.service';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent implements OnInit {
   userId!: string | null
+
   constructor(private taskService: UserTasksService) {}
 
   ngOnInit(): void {

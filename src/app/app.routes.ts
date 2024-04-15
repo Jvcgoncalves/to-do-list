@@ -4,6 +4,8 @@ import { DefaultlayoutComponent } from './components/default-layout/default-layo
 import { HomePageComponent } from './components/default-layout/home-page/home-page.component';
 import { ProfilePageComponent } from './components/default-layout/profile-page/profile-page.component';
 import { TaskComponent } from './components/default-layout/home-page/task/task.component';
+import { AddNewTaskComponent } from './components/default-layout/home-page/add-new-task/add-new-task.component';
+import { SeeSingleTaskComponent } from './components/default-layout/see-single-task/see-single-task.component';
 
 const routes: Routes = [
   {
@@ -21,8 +23,12 @@ const routes: Routes = [
         title: "Home Page",
         children: [
           {
-            path: "",
+            path: "tasks",
             component: TaskComponent
+          },
+          {
+            path: "add-new-task",
+            component: AddNewTaskComponent
           }
         ]
       },
@@ -30,6 +36,11 @@ const routes: Routes = [
         path: "profile",
         component: ProfilePageComponent,
         title: "Profile Page"
+      },
+      {
+        path: "task/:taskId",
+        component: SeeSingleTaskComponent,
+        title: "Task Page"
       }
     ]
   }

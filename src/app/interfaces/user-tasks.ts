@@ -4,5 +4,6 @@ export interface UserTasks {
   description: string,
   delivery_date: string,
   register_date: string,
-  userId: string
+  userId: string,
+  _id: string
 }

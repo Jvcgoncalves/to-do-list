@@ -4,7 +4,6 @@
 
 #App{
   background-color: $gray-200;
-  position: relative;
 
   .response-error{
     min-height: calc(100vh - 5rem);
@@ -35,5 +34,5 @@
 }
 
 main.d-grid{
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 250px minmax(700px, 1098px);
 }
