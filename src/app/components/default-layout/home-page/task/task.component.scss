@@ -57,7 +57,11 @@
 
   .content{
     grid-template-columns: repeat(3, 17.5rem);
-  
+
+    .no-task-add-message,.no-task-found-message{
+      @include font-style($prompt, 1.1rem, 400, $dark-font-color);
+    }
+
     .task-block{
       background-color: $gray-100;
       width: 100%;

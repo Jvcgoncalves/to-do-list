@@ -37,6 +37,7 @@ export class AddNewTaskComponent {
         setTimeout(()=>{
           this.responseOk = null
         }, 5000)
+        this.formController.reset()
       }).catch(e => {
         this.responseOk = false
       })

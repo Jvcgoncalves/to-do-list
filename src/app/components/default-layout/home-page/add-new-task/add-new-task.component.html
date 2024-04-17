@@ -1,5 +1,5 @@
 <div class="main-content">
-  <span class="response-to-user mb-2" *ngIf="responseOk !== null">{{responseOk === true ? "Tarefa adicionada com sucesso" : "Problemas ao salvar nova tarefa, tente novamente mais tarde"}}</span>
+  <span class="response-to-user mb-2 {{responseOk === true ? 'success-on-add' : 'fail-on-add'}}" *ngIf="responseOk !== null">{{responseOk === true ? "Tarefa adicionada com sucesso" : "Problemas ao salvar nova tarefa, tente novamente mais tarde"}}</span>
   <form [formGroup]="formController" class="form d-grid row-gap-1" (submit)="handleSubmit()">
     <div class="row">
       <div class="col-8">
@@ -18,6 +18,7 @@
           mask="d0/M0/0000"
           [leadZeroDateTime]="true"
           [showMaskTyped]="true"
+
         >
         <div class="error-block">
           <span class="error-message" *ngIf="formController.value.delivery_date?.length === 0 && formController.controls.delivery_date.touched">Campo obrigatório *</span>

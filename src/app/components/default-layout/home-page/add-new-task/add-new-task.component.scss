@@ -7,7 +7,12 @@
     @include font-style($prompt, 1rem, 400, $dark-font-color);
     display: inline-block;
   }
-
+  .success-on-add{
+    color: $dark-green
+  }
+  .fail-on-add{
+    color: $dark-red
+  }
   .form{
 
     .form-label{

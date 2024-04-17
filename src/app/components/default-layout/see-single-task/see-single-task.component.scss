@@ -5,7 +5,6 @@
 .container{
   padding: 2rem $padding-x-desktop;
   width: 100%;
-  height: 100%;
 }
 
 .loader{
@@ -18,4 +17,145 @@
   min-height: 100%;
   place-content: center;
   text-align: center;
+}
+
+.main-content{
+  .task-name-block{
+
+    .name-time-block{
+      .task-name{
+        @include font-style($sriracha, 2.25rem, bold, $purple-800);
+      }
+    }
+
+    .checkbox-bg{
+      width: 4.5rem;
+      height: 2rem;
+      background-color: $gray-100;
+      box-shadow: 0 0 .5rem $gray-500;
+      border-radius: 2rem;
+      padding: .35rem;
+      cursor: pointer;
+    }
+    .status-text{
+      @include font-style($prompt, 1.15rem, 400, $dark-font-color);
+      min-width: 4rem;
+      cursor: pointer;
+    }
+
+    .radio{
+      position: relative;
+      width: 1.25rem;
+      height: 100%;
+      border-radius: 100%;
+      background-color: $dark-red;
+      transition: all .4s ease-in-out, background-color .5s ease-out;
+      &::after{
+        content: "";
+        position: absolute;
+        left: 42.5%;
+        bottom: .242rem;
+        width: .2rem;
+        height: 67.5%;
+        background-color: $gray-300;
+        transform: rotate(45deg);
+        transition: all .5s ease-out;
+      }
+      &::before{
+        content: "";
+        position: absolute;
+        right: 40%;
+        bottom: .242rem;
+        width: .2rem;
+        height: 67.5%;
+        background-color: $gray-300;
+        transform: rotate(-45deg);
+        transition: all .5s ease-out;
+      }
+    }
+
+    input#status:checked + .checkbox-bg{
+      .radio{
+        transform: translateX(200%);
+        background-color: $dark-green;
+        &::after{
+          content: "";
+          position: absolute;
+          left: 30%;
+          bottom: .3rem;
+          width: .5rem;
+          height: 65%;
+          border-radius: 0 0 .05rem 0;
+          background-color: transparent;
+          transform: rotate(45deg);
+          border-right: .2rem solid $gray-300 ;
+          border-bottom: .2rem solid $gray-300 ;
+        }
+        &::before{
+          width: 0;
+          transform: rotate(45deg);
+
+        }
+      }
+    }
+  } // .task-name-block end
+
+  .task-description-block{
+    h4{
+      @include font-style($prompt, 1.25rem, 400, $dark-font-color);
+    }
+    p.task-description{
+      @include font-style($prompt, 1rem, 400, $dark-font-color);
+      text-wrap: wrap;
+      text-indent: 1.5rem
+
+    }
+  }
+
+  .dates{
+    p{
+      background-color: $purple-800;
+      @include font-style($prompt, 1rem, 300, $light-font-color);
+      padding: .75rem;
+      border-radius: .25rem;
+      box-shadow: 0 0 .75rem .15rem $gray-400;
+
+
+      &:last-child{
+        background-color: $dark-red !important;
+      }
+//.overdue.delivered
+      &:first-child{
+        background-color: $dark-green !important;
+      }
+    }
+  }
+
+  .task-action-buttons{
+    .btn-primary{
+      transition: transform .3s ease-in-out;
+      @include font-style($prompt, 1rem, 300, $light-font-color);
+      &:hover{
+        transform: scale(1.1);
+      }
+
+      &:first-child{
+        background-color: $purple-900;
+        border-color: $purple-900;
+        filter: drop-shadow( 0 0 .225rem $purple-900);
+      }
+
+      &:not(:first-child){
+        color: $light-font-color;
+        background-color: $dark-red;
+        border-color: $dark-red;
+        filter: drop-shadow( 0 0 .225rem $dark-red) brightness(.9);
+      }
+    }
+  }
+
+  .error-block{
+    font-size: 1rem;
+    color: $dark-red;
+  }
 }

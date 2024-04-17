@@ -25,9 +25,13 @@ import { RouterModule } from '@angular/router';
         <img src="../../../../../assets/search-icon.svg" alt="" class="search-icon">
       </div>
     </form>
-    <div class="content 
-    {{responseReturnError === false && userAllTasks !== undefined ? 'd-grid row-gap-4 column-gap-5' : 'd-flex'}}
-    ">
+    <div class="content {{contentDivClasses}}">
+      <p *ngIf="userAllTasks?.length === 0" class="text-center w-100 no-task-add-message">
+        Nenhuma task adicionada ainda :(
+      </p>
+      <p *ngIf="userAllTasks?.length! >= 1 && tasksToShow?.length === 0" class="text-center w-100 no-task-found-message">
+          Nenhuma task foi encontrada nessa busca
+      </p>
       <article class="task-block p-2 rounded-3 d-flex flex-column" *ngFor="let task of tasksToShow">
         <div class="title-box mb-2 d-flex justify-content-between align-items-center">
           <h3 class="task-title m-0">{{task.name}}</h3>
@@ -66,6 +70,8 @@ import { RouterModule } from '@angular/router';
 export class TaskComponent implements OnInit {
   @Input() userId!: string | null;
   @Input() tasksToShow!: UserTasks[] | [];
+  //'d-grid row-gap-4 column-gap-5' : 'd-flex'
+  contentDivClasses: string = 'd-flex';
   userAllTasks!:  UserTasks[] | [];
   searchTasksFormController = new FormGroup({
     searchBar: new FormControl('')
@@ -82,6 +88,8 @@ export class TaskComponent implements OnInit {
         this.userAllTasks = res
         this.tasksToShow = res
         this.responseReturnError = false
+        this.contentDivClasses = this.userAllTasks?.length === 0 ? "d-flex" : "d-grid row-gap-4 column-gap-5"
+        
       } else {
         this.responseReturnError = true
       }
