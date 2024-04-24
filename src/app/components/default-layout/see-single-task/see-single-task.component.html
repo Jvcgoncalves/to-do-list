@@ -19,14 +19,18 @@
   <ng-template #taskFound>
     <article class="main-content h-100 w-100">
       <header class="task-name-block d-flex mb-4 flex-column gap-0">
-        <div class="d-flex align-items-center name-time-block mb-4">
+        <div class="d-flex align-items-center justify-content-between
+        row-gap-3 name-time-block mb-4">
           <h2 class="task-name mb-0">
             {{task.name}}
           </h2>
-          <div class="task-action-buttons d-flex gap-4 ms-auto">
-            <button class="btn btn-primary" type="button">
-              Editar
+          <div class="task-action-buttons d-flex gap-4">
+            <button (click)="backPage()" class="btn btn-primary">
+              Voltar a tela inicial
             </button>
+            <a class="btn btn-primary" [routerLink]="pathToEditTask">
+              Editar
+            </a>
             <button class="btn btn-primary" type="button"
             (click)="deleteCurrentTask()"
             >
@@ -40,6 +44,7 @@
           </label>
           <input id="status" type="checkbox" class="visually-hidden d-none"
           [checked]="inputControll"
+          #doneStatus
           >
           <div class="checkbox-bg" (click)="setTaskStatus()">
             <div class="radio"></div>
@@ -54,20 +59,19 @@
         <p class="delivery-date mb-1">
           Data de entrega: {{task.delivery_date}}
         </p>
-        <p class="task-on-time-status mb-1">
-          Em atraso
+        <p class="task-on-time-status mb-1 {{overdueOrOnTimeTaskClassToAdd}}" >
+          {{overdueOrOnTimeTaskStatus}}
         </p>
       </div>
       <section class="task-description-block mb-4">
         <h4 class="mb-1">
           Descrição:
         </h4>
-        <p class="task-description">
-          {{task.description}}
+        <p class="task-description" [innerText]="task.description">
         </p>
       </section>
       <div class="error-block mt-4" *ngIf="getErrorOnDelete">
-        <p>
+        <p >
           Não foi possível excluir a tarefa, tente novamente mais tarde
         </p>
       </div>

@@ -5,4 +5,65 @@
 .container{
   padding: 2rem $padding-x-desktop;
   width: 100%;
+
+  .btn.btn-primary{
+    transition: transform .3s ease-in-out;
+    @include font-style($prompt, 1rem, 400, $light-font-color);
+    background-color: $purple-800;
+    border-color: $purple-800;
+    box-shadow:  0 0 .225rem $purple-800;
+    max-width: 12rem;
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
+
+  .response-error{
+    @include font-style($prompt, 1.5rem, 300, $dark-font-color);
+  }
+
+  .content-body{
+    .form{
+      .form-label{
+        @include font-style($prompt, 1rem, 400, $dark-font-color);
+      }
+      
+      .input-block{
+        flex-wrap: nowrap;
+        width: 100%;
+        min-height: 2.375rem;
+
+        .form-control{
+          transition: all .3s ease-in-out;
+          @include font-style($prompt, 1rem, 400, $dark-font-color);
+
+          &:focus{
+            border-color: $purple-500;
+            box-shadow: 0 0 0 .25rem #9147ff79;
+          }
+        }
+
+        .form-control:read-only{
+          
+          background-color: transparent;
+          border-bottom: .1rem solid $purple-1000 !important;
+          border-radius: 0;
+          padding: 0 .25rem;
+          cursor: default;
+
+          &:focus{
+            box-shadow: none;
+            border-color: transparent;
+          }
+        }
+        .edit-button{
+          border: none;
+          background-color: transparent;
+          .bi.bi-pencil-square{
+            font-size: 1.35rem;
+          }
+        }
+      }
+    }
+  }
 }

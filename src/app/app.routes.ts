@@ -6,12 +6,13 @@ import { ProfilePageComponent } from './components/default-layout/profile-page/p
 import { TaskComponent } from './components/default-layout/home-page/task/task.component';
 import { AddNewTaskComponent } from './components/default-layout/home-page/add-new-task/add-new-task.component';
 import { SeeSingleTaskComponent } from './components/default-layout/see-single-task/see-single-task.component';
+import { EditTaskComponent } from './components/default-layout/edit-task/edit-task.component';
 
 const routes: Routes = [
   {
     path: "",
     component: SignUpLoginComponent,
-    title: "Sign Up - Login Page"
+    title: "Logar - cadastrar"
   },
   {
     path: "user-logged/:userId",
@@ -35,12 +36,17 @@ const routes: Routes = [
       {
         path: "profile",
         component: ProfilePageComponent,
-        title: "Profile Page"
+        title: "Página de perfil"
       },
       {
         path: "task/:taskId",
         component: SeeSingleTaskComponent,
-        title: "Task Page"
+        title: "Pagina da tarefa",
+      },
+      {
+        path: "task/:taskId/edit-task",
+        component: EditTaskComponent,
+        title: "Editar tarefa"
       }
     ]
   }

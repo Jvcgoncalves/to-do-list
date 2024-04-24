@@ -32,7 +32,7 @@ export class UsersService {
     return response.text()
   }
 
-  getUserData = async ({userId}: {userId: string}): Promise<Users> => {
+  getUserData = async ({userId}: {userId: string}): Promise<Users | string> => {
     const userData = await fetch(`${this.url}/${userId}`,{
       method: 'GET',
       headers:{

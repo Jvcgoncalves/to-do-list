@@ -1,74 +1,113 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UserTasksService } from '../../../services/user-tasks.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserTasks } from '../../../interfaces/user-tasks';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import checkTaskTime from '../../../../scripts/checkTaskTime';
 
 @Component({
   selector: 'app-see-single-task',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './see-single-task.component.html',
   styleUrl: './see-single-task.component.scss'
 })
 
 export class SeeSingleTaskComponent implements OnInit {
   task!: UserTasks;
-  getResponseOnGetError: boolean = false
-  taskNotFound: boolean = false
-  inputControll!: boolean
+  getResponseOnGetError: boolean = false;
+  taskNotFound: boolean = false;
+  inputControll!: boolean;
   getErrorOnDelete: boolean = false;
+  overdueOrOnTimeTaskStatus!: string;
+  overdueOrOnTimeTaskClassToAdd!: string;
+  pathToEditTask!: string;
+  @ViewChild("doneStatus") doneStatusInput!: ElementRef;
 
-  constructor(private userTasksService: UserTasksService, private activatedRoute: ActivatedRoute, private routes: Router) { }
+  constructor(private userTasksService: UserTasksService, private activatedRoute: ActivatedRoute, private routes: Router, private location: Location) { }
 
   ngOnInit(): void {
-    const taskId = this.activatedRoute.snapshot.params['taskId']
-    const userId = this.activatedRoute.parent?.snapshot.params['userId']
+    const taskId = this.activatedRoute.snapshot.params['taskId'];
+    const userId = this.activatedRoute.parent?.snapshot.params['userId'];
 
     this.userTasksService.getSingleTask({taskId,userId}).then(res =>{
       
       if(typeof res === 'string'){
-        this.taskNotFound = true
-        return 
+        this.taskNotFound = true;
+        return;
       }
       
-      this.task = res
-      this.inputControll = this.task.done 
+      this.task = res;
+      this.inputControll = this.task.done;
+      this.checkTaskTime();
+      this.setPathToEditTask();
     }).catch(e =>{
-      this.getResponseOnGetError = true
+      this.getResponseOnGetError = true;
     })
   }
 
   setTaskStatus(){
-    this.inputControll = !this.inputControll
-    this.checkInputControlValue(this.inputControll)
+    if(this.doneStatusInput.nativeElement.className.includes("changing-done-status")) return
+    this.inputControll = !this.inputControll;
+    this.editTask();
   }
 
-  checkInputControlValue(inputControllValue: boolean){
+  editTask(){
+    this.doneStatusInput.nativeElement?.classList.add("changing-done-status");
 
+    this.userTasksService.editTask({ 
+      userId: this.task.userId, 
+      taskId: this.task._id, 
+      newTaskData: {done: this.inputControll} 
+    })
+    .then(res => {
+      if(res === "task edited"){
+        setTimeout(() => { 
+           this.doneStatusInput.nativeElement?.classList.remove("changing-done-status");
+        }, 1000)
+      }
+      this.checkTaskTime()
+    })
+  }
+
+  backPage(){
+    this.location.back();
   }
 
   deleteCurrentTask(){
-    const taskId = this.activatedRoute.snapshot.params['taskId']
-    const userId = this.activatedRoute.parent?.snapshot.params['userId']
+    if(!confirm(`Tem certeza que deseja excluir a tarefa ${this.task.name}?`)) return
+    const taskId = this.activatedRoute.snapshot.params['taskId'];
+    const userId = this.activatedRoute.parent?.snapshot.params['userId'];
 
     this.userTasksService.deleteTask({userId,taskId}).then(res => {
       if(res === "invalid id" || res === "task not found"){
-        this.getErrorOnDelete = true
+        this.getErrorOnDelete = true;
         setTimeout(()=>{
-          this.getErrorOnDelete = false
-        },5000)
-        return
+          this.getErrorOnDelete = false;
+        },5000);
+        return;
       }
-      console.log(res);
-      
-      this.routes.navigate(["user-logged",userId,"tasks"])
+      this.location.back();
     }).catch(e => {
-      console.log(e);
+      this.getResponseOnGetError = true;
     })
   }
 
   checkTaskTime(){
-    
+    if(this.inputControll){
+      this.overdueOrOnTimeTaskClassToAdd = "delivered";
+      this.overdueOrOnTimeTaskStatus = "Entregue"
+      return
+    }
+    this.overdueOrOnTimeTaskStatus = checkTaskTime({register_date: this.task.register_date, delivery_date: this.task.delivery_date});
+    if(this.overdueOrOnTimeTaskStatus === "Dentro do prazo" || this.overdueOrOnTimeTaskStatus === "Último dia"){
+      this.overdueOrOnTimeTaskClassToAdd = "on-time";
+    } else if(this.overdueOrOnTimeTaskStatus === "Em atraso") {
+      this.overdueOrOnTimeTaskClassToAdd ="overdue";
+    }
+  }
+
+  setPathToEditTask(){
+    this.pathToEditTask = `/user-logged/${this.task.userId}/task/${this.task._id}/edit-task`;
   }
 }

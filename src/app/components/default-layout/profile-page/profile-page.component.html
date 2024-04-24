@@ -1,3 +1,44 @@
 <div class="container">
-  <p>aaaaaa</p>
+  <button (click)="backPage()" class="btn btn-primary back-page w-25 d-inline-block">
+    Voltar a tela anterior
+  </button>
+  <h3 class="fs-3 text-center w-50 d-inline-block mb-5">
+    Seu perfil
+  </h3>
+  <app-loader *ngIf="!userData && !getResponseError"></app-loader>
+  <div class="response-error" *ngIf="getResponseError">
+    <button class="btn btn-primary my-3">
+      Voltar a tela anterior
+    </button>
+    <p class="text-center mt-5">
+      Não foi possível carregar seu perfil :(
+    </p>
+  </div>
+  <div class="content-body" *ngIf="userData">
+    <form class="form">
+      <div class="row mb-3">
+        <div class="col-12">
+          <label for="user-name-input" class="form-label">Nome de usuário:</label>
+          <div class="input-block d-flex align-items-center gap-2">
+            <input type="text" class="form-control" id="user-name-input" [value]="userData.user_name" [readonly]="true" #userNameInput>
+            <button class="edit-button p-0" type="button" [attr.data-input-target]="'userNameInput'" (click)="enableEditInput($event)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <label for="user-name-input" class="form-label">Seu email:</label>
+          <div class="input-block d-flex align-items-center gap-2">
+            <input type="text" class="form-control" id="user-name-input" [value]="userData.email" [readonly]="true" #userEmailInput>
+            <button class="edit-button p-0" type="button" [attr.data-input-target]="'userEmailInput'" (click)="enableEditInput($event)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+  </div>
 </div>

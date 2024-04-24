@@ -21,10 +21,16 @@
 
 .main-content{
   .task-name-block{
-
     .name-time-block{
+      flex-wrap: wrap;
       .task-name{
         @include font-style($sriracha, 2.25rem, bold, $purple-800);
+        white-space: wrap;
+        text-wrap: wrap;
+        text-overflow: ellipsis;
+        max-width: 20rem;
+        width: 100%;
+        overflow: hidden;
       }
     }
 
@@ -37,6 +43,7 @@
       padding: .35rem;
       cursor: pointer;
     }
+    
     .status-text{
       @include font-style($prompt, 1.15rem, 400, $dark-font-color);
       min-width: 4rem;
@@ -73,7 +80,9 @@
         transition: all .5s ease-out;
       }
     }
-
+    input#status.changing-done-status + .checkbox-bg{
+      cursor: default;
+    }
     input#status:checked + .checkbox-bg{
       .radio{
         transform: translateX(200%);
@@ -107,25 +116,28 @@
     p.task-description{
       @include font-style($prompt, 1rem, 400, $dark-font-color);
       text-wrap: wrap;
-      text-indent: 1.5rem
-
+      margin-left: 1.5rem;
     }
   }
 
   .dates{
     p{
       background-color: $purple-800;
-      @include font-style($prompt, 1rem, 300, $light-font-color);
+      @include font-style($prompt, 1rem, 400, $light-font-color);
       padding: .75rem;
       border-radius: .25rem;
       box-shadow: 0 0 .75rem .15rem $gray-400;
 
-
-      &:last-child{
+      &.overdue{
         background-color: $dark-red !important;
       }
-//.overdue.delivered
-      &:first-child{
+
+      &.on-time{
+        background-color: $medium-green !important; //#001b91
+        color: $dark-font-color;
+      }
+
+      &.delivered{
         background-color: $dark-green !important;
       }
     }
@@ -139,13 +151,13 @@
         transform: scale(1.1);
       }
 
-      &:first-child{
+      &:not(:last-child){
         background-color: $purple-900;
         border-color: $purple-900;
         filter: drop-shadow( 0 0 .225rem $purple-900);
       }
 
-      &:not(:first-child){
+      &:last-child{
         color: $light-font-color;
         background-color: $dark-red;
         border-color: $dark-red;

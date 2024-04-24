@@ -6,11 +6,12 @@ import { Users } from '../../interfaces/users';
 import { UsersService } from '../../services/users.service';
 import { TaskComponent } from './home-page/task/task.component';
 import { CommonModule } from '@angular/common';
+import { LoaderComponent } from '../common/loader/loader.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [DefaultHeaderComponent,AsideNavBarComponent,TaskComponent,RouterOutlet,RouterModule,CommonModule],
+  imports: [ DefaultHeaderComponent, AsideNavBarComponent, TaskComponent, RouterOutlet, RouterModule, CommonModule, LoaderComponent ],
   templateUrl: './default-layout.component.html',
   styleUrl: './default-layout.component.scss',
 })
@@ -25,6 +26,10 @@ export class DefaultlayoutComponent implements OnInit {
     const userId = this.router.snapshot.params['userId']
     
     this.userService.getUserData({userId}).then(res =>{
+      if(typeof res === "string") {
+        this.responseReturnsError = true
+        return
+      }
       this.userData = res
     }).catch(e => {
       this.responseReturnsError = true

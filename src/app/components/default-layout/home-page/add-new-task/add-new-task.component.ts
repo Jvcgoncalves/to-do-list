@@ -18,7 +18,7 @@ export class AddNewTaskComponent {
     description: new FormControl('',[Validators.required]),
     delivery_date: new FormControl('',[Validators.required,Validators.minLength(10)]),
   });
-
+  resetForm: boolean = false;
   responseOk: boolean | null = null;
 
   constructor(private userTasksService: UserTasksService, private activatedRouter: ActivatedRoute) { }
@@ -37,11 +37,15 @@ export class AddNewTaskComponent {
         setTimeout(()=>{
           this.responseOk = null
         }, 5000)
-        this.formController.reset()
+        if(this.resetForm) this.formController.reset()
       }).catch(e => {
         this.responseOk = false
       })
 
+  }
+
+  setResetForm(){
+    this.resetForm = !this.resetForm
   }
 
   controlTypingData(ev: Event){

@@ -1,0 +1,128 @@
+@import "../../../../sass/variables/colors/colors.scss";
+@import "../../../../sass/variables/fonts/fonts.scss";
+@import "../../../../sass/variables/common/common.scss";
+
+.container{
+  padding: 1.5rem $padding-x-desktop ;
+  width: 100%;
+
+  .back-page{
+    transition: transform .3s ease-in-out;
+    @include font-style($prompt, 1rem, 400, $light-font-color);
+    background-color: $purple-800;
+    border-color: $purple-800;
+    box-shadow:  0 0 .225rem $purple-800;
+    max-width: 12rem;
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
+
+  h3.fs-3{
+    font-family: $sriracha;
+    font-weight: 400;
+  }
+
+  .form{
+
+    .get-error-response{
+      @include font-style($prompt, 1rem, 400, $dark-red);
+    }
+
+    .get-same-data{
+      @include font-style($prompt, 1rem, 400, $dark-font-color);
+    }
+
+    .form-label{
+      @include font-style($prompt, 1rem, 400, $dark-font-color);
+    }
+
+    .form-control{
+      @include font-style($prompt, 1rem, 400,$dark-font-color);
+      &:focus{
+        border-color: $purple-500;
+        box-shadow: 0 0 0 .25rem #9147ff79;
+      }
+    }
+
+    .btn.btn-primary{
+      background-color: $purple-700;
+      border-color: $purple-700;
+      width: 7rem;
+      @include font-style($prompt, 1.15rem, 300, $light-font-color);
+      line-height: 1.75rem;
+      justify-self: center;
+    }
+
+    .checkbox-bg{
+      width: 4.5rem;
+      height: 2rem;
+      background-color: $gray-100;
+      box-shadow: 0 0 .5rem $gray-500;
+      border-radius: 2rem;
+      padding: .35rem;
+      cursor: pointer;
+    }
+
+    .status-text{
+      @include font-style($prompt, 1.15rem, 400, $dark-font-color);
+      min-width: 4rem;
+      cursor: pointer;
+    }
+
+    .radio{
+      position: relative;
+      width: 1.25rem;
+      height: 100%;
+      border-radius: 100%;
+      background-color: $dark-red;
+      transition: all .4s ease-in-out, background-color .5s ease-out;
+      &::after{
+        content: "";
+        position: absolute;
+        left: 42.5%;
+        bottom: .242rem;
+        width: .2rem;
+        height: 67.5%;
+        background-color: $gray-300;
+        transform: rotate(45deg);
+        transition: all .5s ease-out;
+      }
+      &::before{
+        content: "";
+        position: absolute;
+        right: 40%;
+        bottom: .242rem;
+        width: .2rem;
+        height: 67.5%;
+        background-color: $gray-300;
+        transform: rotate(-45deg);
+        transition: all .5s ease-out;
+      }
+    }
+
+    input#status:checked + .checkbox-bg{
+      .radio{
+        transform: translateX(200%);
+        background-color: $dark-green;
+        &::after{
+          content: "";
+          position: absolute;
+          left: 30%;
+          bottom: .3rem;
+          width: .5rem;
+          height: 65%;
+          border-radius: 0 0 .05rem 0;
+          background-color: transparent;
+          transform: rotate(45deg);
+          border-right: .2rem solid $gray-300 ;
+          border-bottom: .2rem solid $gray-300 ;
+        }
+        &::before{
+          width: 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}

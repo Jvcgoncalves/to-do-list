@@ -1,42 +1,111 @@
 <div class="main-content">
-  <span class="response-to-user mb-2 {{responseOk === true ? 'success-on-add' : 'fail-on-add'}}" *ngIf="responseOk !== null">{{responseOk === true ? "Tarefa adicionada com sucesso" : "Problemas ao salvar nova tarefa, tente novamente mais tarde"}}</span>
-  <form [formGroup]="formController" class="form d-grid row-gap-1" (submit)="handleSubmit()">
+  <span
+    class="response-to-user mb-2 {{
+      responseOk === true ? 'success-on-add' : 'fail-on-add'
+    }}"
+    *ngIf="responseOk !== null"
+    >{{
+      responseOk === true
+        ? "Tarefa adicionada com sucesso"
+        : "Problemas ao salvar nova tarefa, tente novamente mais tarde"
+    }}</span
+  >
+  <form
+    [formGroup]="formController"
+    class="form d-grid row-gap-1"
+    (submit)="handleSubmit()"
+  >
     <div class="row">
       <div class="col-8">
-        <label for="task-name" class="form-label mb-0">Nome da Tarefa</label>
-        <input formControlName="name" type="text" id="task-name" class="form-control"
-        placeholder="Trabalho da faculdade"
-        >
+        <label for="task-name" class="form-label mb-1">Nome da Tarefa</label>
+        <input
+          formControlName="name"
+          type="text"
+          id="task-name"
+          class="form-control"
+          placeholder="Trabalho da faculdade"
+        />
         <div class="error-block">
-          <span class="error-message" *ngIf="formController.value.name?.length === 0 && formController.controls.name.touched">Campo obrigatório *</span>
+          <span
+            class="error-message"
+            *ngIf="
+              formController.value.name?.length === 0 &&
+              formController.controls.name.touched
+            "
+            >Campo obrigatório *</span
+          >
         </div>
       </div>
       <div class="col-4">
-        <label for="task-delivery-date" class="form-label mb-0">Data de entrega</label>
-        <input formControlName="delivery_date" type="text" id="task-delivery-date" class="form-control"
+        <label for="task-delivery-date" class="form-label mb-1"
+          >Data de entrega</label
+        >
+        <input
+          formControlName="delivery_date"
+          type="text"
+          id="task-delivery-date"
+          class="form-control"
           [dropSpecialCharacters]="false"
           mask="d0/M0/0000"
           [leadZeroDateTime]="true"
           [showMaskTyped]="true"
-
-        >
+        />
         <div class="error-block">
-          <span class="error-message" *ngIf="formController.value.delivery_date?.length === 0 && formController.controls.delivery_date.touched">Campo obrigatório *</span>
+          <span
+            class="error-message"
+            *ngIf="
+              formController.value.delivery_date?.length === 0 &&
+              formController.controls.delivery_date.touched
+            "
+            >Campo obrigatório *</span
+          >
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <label for="task-description" class="form-label mb-0">Descrição da tarefa:</label>
-        <textarea formControlName="description" class="form-control" id="task-description" cols="30" rows="5"
-        placeholder="Descrição..."
+        <label for="task-description" class="form-label mb-1"
+          >Descrição da tarefa:</label
+        >
+        <textarea
+          formControlName="description"
+          class="form-control"
+          id="task-description"
+          cols="30"
+          rows="5"
+          placeholder="Descrição..."
         ></textarea>
         <div class="error-block">
-          <span class="error-message" *ngIf="formController.value.description?.length === 0 && formController.controls.description.touched">Campo obrigatório *</span>
+          <span
+            class="error-message"
+            *ngIf="
+              formController.value.description?.length === 0 &&
+              formController.controls.description.touched
+            "
+            >Campo obrigatório *</span
+          >
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary mt-2" [disabled]="!formController.valid">
+    <div class="reset-form-on-submit-block d-flex gap-2">
+      <input
+        type="checkbox"
+        [checked]="resetForm"
+        class="visually-hidden d-none"
+        id="reset-form"
+      />
+      <div class="checkbox" (click)="setResetForm()">
+        <div class="checkbox-status"></div>
+      </div>
+      <label class="reset-form-label" for="reset-form"
+        >Limpar fomulário aonde enviar</label
+      >
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mt-2"
+      [disabled]="!formController.valid"
+    >
       Salvar
     </button>
   </form>

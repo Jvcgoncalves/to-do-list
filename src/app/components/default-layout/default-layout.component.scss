@@ -21,16 +21,6 @@
       @include font-style($prompt, 1.1rem, 400, $light-font-color);      
     }
   }
-
-  .loader{
-    min-height: calc(100vh - 5rem);
-    min-height: calc(100dvh - 5rem);
-    place-items: center;
-    .spinner-border{
-      width: 5rem;
-      height: 5rem;
-    }
-  }
 }
 
 main.d-grid{

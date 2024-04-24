@@ -1,0 +1,85 @@
+<div class="container">
+  <button (click)="backPage()" class="btn btn-primary back-page w-25 d-inline-block">
+    Voltar a tela anterior
+  </button>
+  <h3 class="fs-3 text-center w-50 d-inline-block mb-5">
+    Editar tarefas
+  </h3>
+  <form
+    [formGroup]="formController"
+    class="form d-grid row-gap-3"
+    (submit)="handleSubmit()"
+    *ngIf="formController"
+  >
+    <span
+    class="get-error-response mb-2"
+    *ngIf="getErrorOnEdit !== false"
+    >
+      Problemas ao editar tarefa, tente novamente mais tarde
+    </span>
+    <span
+    class="get-same-data mb-2"
+    *ngIf="getSameTaskData"
+    >
+      Nenhuma informação alterada, tarefa não editada
+    </span>
+    <div class="row">
+      <div class="col-6">
+        <label for="task-name" class="form-label mb-1">Nome da Tarefa</label>
+        <input
+          formControlName="name"
+          [value]="formController.value?.name"
+          type="text"
+          id="task-name"
+          class="form-control"
+        />
+      </div>
+      <div class="col-2">
+        <label for="status" class="status-text text-center d-block mb-1">
+          {{formController.value?.done ? 'Feita' : 'A fazer'}}
+        </label>
+        <input id="status" type="checkbox" class="visually-hidden d-none"
+        [checked]="formController.value?.done"
+        >
+        <div class="checkbox-bg mx-auto" (click)="setTaskStatus()">
+          <div class="radio"></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <label for="task-delivery-date" class="form-label mb-1"
+        >Data de entrega</label
+      >
+      <input
+        formControlName="delivery_date"
+        type="text"
+        id="task-delivery-date"
+        class="form-control mb-1"
+        [dropSpecialCharacters]="false"
+        mask="d0/M0/0000"
+        [leadZeroDateTime]="true"
+        [showMaskTyped]="true"
+        [value]="formController.value?.delivery_date"
+      />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label for="task-description" class="form-label mb-1"
+          >Descrição da tarefa:</label
+        >
+        <textarea
+          formControlName="description"
+          class="form-control"
+          id="task-description"
+          cols="30"
+          rows="5"
+          placeholder="Descrição..."
+          [value]="formController.value?.description"
+        ></textarea>
+      </div>
+    </div>
+    <button [disabled]="!formController.valid" type="submit" class=" btn btn-primary d-block mx-auto">
+      Salvar
+    </button>
+  </form>
+</div>

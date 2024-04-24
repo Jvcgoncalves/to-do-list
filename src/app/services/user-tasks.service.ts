@@ -60,4 +60,18 @@ export class UserTasksService {
 
     return response.json()
   }
+  ///:userId/:taskId
+  editTask = async ({userId,taskId, newTaskData}: {userId: string, taskId: string, newTaskData: any}): Promise<UserTasks | string> =>{
+    if(userId === "" || taskId === "") return "invalid id"
+
+    const response = await fetch(`${this.url}/${userId }/${taskId}`,{
+      method: "PUT",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({data: newTaskData})
+    })
+
+    return response.json();
+  }
 }
