@@ -25,14 +25,15 @@
             {{task.name}}
           </h2>
           <div class="task-action-buttons d-flex gap-4">
-            <button (click)="backPage()" class="btn btn-primary">
+            <button (click)="backPage()" class="btn btn-primary" tabindex="0">
               Voltar a tela inicial
             </button>
-            <a class="btn btn-primary" [routerLink]="pathToEditTask">
+            <a class="btn btn-primary" [routerLink]="pathToEditTask" tabindex="0">
               Editar
             </a>
             <button class="btn btn-primary" type="button"
             (click)="deleteCurrentTask()"
+            tabindex="0"
             >
               Excluir
             </button>
@@ -46,18 +47,17 @@
           [checked]="inputControll"
           #doneStatus
           >
-          <div class="checkbox-bg" (click)="setTaskStatus()">
+          <div class="checkbox-bg" (click)="setTaskStatus()" (keydown)="onEnterKeyDown($event)" tabindex="0">
             <div class="radio"></div>
           </div>
-          
         </div>
       </header>
       <div class="dates mb-4 d-flex gap-3">
         <p class="resgister-date mb-1">
-          Data de registro: {{task.register_date}}
+          Data de registro: {{task.register_date | date:"dd/MM/yyyy" }}
         </p>
         <p class="delivery-date mb-1">
-          Data de entrega: {{task.delivery_date}}
+          Data de entrega: {{task.delivery_date | date:"dd/MM/yyyy" }}
         </p>
         <p class="task-on-time-status mb-1 {{overdueOrOnTimeTaskClassToAdd}}" >
           {{overdueOrOnTimeTaskStatus}}

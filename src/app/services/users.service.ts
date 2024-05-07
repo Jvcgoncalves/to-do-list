@@ -42,4 +42,28 @@ export class UsersService {
 
     return userData.json() ?? {}
   }
+
+  putUserData = async ({ userId, newUserData, password }: {userId: string, newUserData: any, password: string}): Promise<Users | string> => {
+    const userData = await fetch(`${this.url}/${userId}`,{
+      method: 'PUT',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ new_data: newUserData, password})
+    })
+
+    return userData.json() ?? {}
+  }
+
+  deleteUserData = async ({ userId, password }: {userId: string, password: string}): Promise<Users | string> => {
+    const userData = await fetch(`${this.url}/${userId}`,{
+      method: 'DELETE',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ password })
+    })
+
+    return userData.json() ?? {}
+  }
 }

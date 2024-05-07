@@ -72,9 +72,9 @@ export class SignUpFormComponent {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const userName = control.value as string;
       if (userName.match(/[\d]/)) {
-        return { invalidUserName: true }; // Retorna um objeto com a chave da validação e o valor true
+        return { invalidUserName: true };
       } else {
-        return null; // Retorna null se a validação passar
+        return null;
       }
     };
   }

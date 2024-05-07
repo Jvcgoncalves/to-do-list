@@ -1,11 +1,21 @@
 <div class="container">
-  <button (click)="backPage()" class="btn btn-primary back-page w-25 d-inline-block">
-    Voltar a tela anterior
-  </button>
-  <h3 class="fs-3 text-center w-50 d-inline-block mb-5">
-    Seu perfil
-  </h3>
+  <div class="profile-header row mb-5 justify-content-between">
+    <button (click)="backPage()" class="btn btn-primary back-page">
+      Voltar a tela anterior
+    </button>
+    <h3 class="fs-3 text-center col-auto">
+      Seu perfil
+    </h3>
+    <button class="btn btn-primary delete-profile-button" (click)="showPasswordConfirmationComponentToDeleteAccount = true">
+      Excluir perfil
+    </button>
+  </div>
   <app-loader *ngIf="!userData && !getResponseError"></app-loader>
+  <div class="error-on-edit" *ngIf="getResponseErrorOnEdit">
+    <p>
+      Não foi possível editar, tente novamente mais tarde
+    </p>
+  </div>
   <div class="response-error" *ngIf="getResponseError">
     <button class="btn btn-primary my-3">
       Voltar a tela anterior
@@ -15,13 +25,15 @@
     </p>
   </div>
   <div class="content-body" *ngIf="userData">
-    <form class="form">
-      <div class="row mb-3">
+    <form class="form"
+    [formGroup]="formGroupController"
+    >
+      <div class="row mb-4">
         <div class="col-12">
-          <label for="user-name-input" class="form-label">Nome de usuário:</label>
+          <label for="user-name-input" class="form-label mb-1">Nome de usuário:</label>
           <div class="input-block d-flex align-items-center gap-2">
-            <input type="text" class="form-control" id="user-name-input" [value]="userData.user_name" [readonly]="true" #userNameInput>
-            <button class="edit-button p-0" type="button" [attr.data-input-target]="'userNameInput'" (click)="enableEditInput($event)">
+            <input tabindex="1" autocomplete="off" type="text" formControlName="userNameInput" (input)="onInputValueChanged($event)" (keypress)="controlUserNameInput($event)" class="form-control" id="user-name-input" [value]="formGroupController.value.userNameInput" readonly #userNameInput>
+            <button tabindex="1" class="edit-button p-0" type="button" [attr.data-input-target]="'userNameInput'" (click)="enableEditInput($event)">
               <i class="bi bi-pencil-square"></i>
             </button>
           </div>
@@ -29,16 +41,56 @@
       </div>
       <div class="row mb-3">
         <div class="col-12">
-          <label for="user-name-input" class="form-label">Seu email:</label>
+          <label for="user-email-input" class="form-label mb-1">Seu email:</label>
           <div class="input-block d-flex align-items-center gap-2">
-            <input type="text" class="form-control" id="user-name-input" [value]="userData.email" [readonly]="true" #userEmailInput>
-            <button class="edit-button p-0" type="button" [attr.data-input-target]="'userEmailInput'" (click)="enableEditInput($event)">
+            <input tabindex="1" autocomplete="off" type="text" formControlName="userEmailInput" (input)="onInputValueChanged($event)" class="form-control" id="user-email-input" [value]="formGroupController.value.userEmailInput" readonly #userEmailInput>
+            <button tabindex="1" class="edit-button p-0" type="button" [attr.data-input-target]="'userEmailInput'" (click)="enableEditInput($event)">
               <i class="bi bi-pencil-square"></i>
             </button>
           </div>
         </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <label for="user-password-input" class="form-label mb-1">Sua senha:</label>
+          <div class="input-block d-flex align-items-center gap-2">
+            <input tabindex="1" autocomplete="off" type="password" formControlName="userPasswordInput" (input)="onInputValueChanged($event)" class="form-control" id="user-password-input" [value]="formGroupController.value.userPasswordInput" readonly #userPasswordInput>
+            <button tabindex="1" class="edit-button p-0" type="button" [attr.data-input-target]="'userPasswordInput'" (click)="enableEditInput($event)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center gap-3 my-3">
+        <button 
+        tabindex="1"
+        class="btn btn-primary form-buttons" 
+        type="submit" 
+        (click)="checkToShowPasswordConfirmationComponent()"
+        [disabled]="!hasDataUpdated.email && !hasDataUpdated.name && !hasDataUpdated.password"
+        type="button"
+        > 
+        Editar
+        </button>
+        <button 
+        tabindex="1"
+        class="btn btn-primary form-buttons"
+        (click)="discartChanges()"
+        [disabled]="!hasDataUpdated.email && !hasDataUpdated.name && !hasDataUpdated.password"
+        type="button"
+        >
+          Cancelar
+        </button>
       </div>
     </form>
-    
   </div>
+
+  <app-confirm-profile-edits 
+  *ngIf="showPasswordConfirmationComponentToEdit"
+  (confirmPassword)="onConfirmPasswordToChangeAccountInfo($event)"
+  ></app-confirm-profile-edits>
+  <app-confirm-profile-edits 
+  *ngIf="showPasswordConfirmationComponentToDeleteAccount"
+  (confirmPassword)="onConfirmPasswordToDeleteAccount($event)"
+  ></app-confirm-profile-edits>
 </div>

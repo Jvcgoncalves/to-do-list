@@ -33,8 +33,8 @@
         <p class="task-description mb-1">{{task.description}}</p>
       </div>
       <div class="task-dates-block m-0 mt-2">
-        <p class="tast-dates mb-1">Registro: {{task.register_date}}</p>
-        <p class="tast-dates mb-1">Data de entrega: {{task.delivery_date}}</p>
+        <p class="tast-dates mb-1">Registro: {{task.register_date | date:"dd/MM/yyyy"}}</p>
+        <p class="tast-dates mb-1">Data de entrega: {{task.delivery_date | date:"dd/MM/yyyy"}}</p>
       </div>
       <a routerLink="/user-logged/{{userId}}/task/{{task._id}}" class="btn btn-primary rounded-3 mt-4 see-more-button mx-auto">Detalhes
 

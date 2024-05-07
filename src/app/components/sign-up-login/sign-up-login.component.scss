@@ -6,7 +6,7 @@
   min-height: 100dvh;
   .row{
     position: relative;
-    max-height: 32rem;
+    max-height: 31rem;
     height: 100%;
     place-self: center;
     background-color: $purple-100;
@@ -80,6 +80,125 @@
       }
       .sign-up-page-squares{
         transform: translateY(-100%);
+      }
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .container.d-grid{
+    max-width: 90%;
+    .row{
+      img{
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+      }
+      .squares-block{
+        .login-page-squares{
+          .checklist-square{
+            width: 7rem;
+            height: 7rem;
+          }
+        }
+
+        .sign-up-page-squares{
+          margin-left: 2rem;
+          .checklist-square{
+            span{
+              font-size: 1.75rem;
+            }
+          }
+        }
+      }
+  
+      .form-block{
+        background-color: $purple-100;
+        height: 100%;
+        padding: 1.5rem 2rem;
+        transition: all 0s ease-in-out; 
+      }  // .form-block end
+    } // .row end  
+  } // .container end
+}
+
+@media (max-width: 867px) {
+  .container.d-grid{
+    max-width: 90%;
+    .row{
+      img{
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+      }
+      .squares-block{
+        .login-page-squares{
+          .checklist-square{
+            width: 6rem;
+            height: 6rem;
+          }
+        }
+
+        .sign-up-page-squares{
+          margin-left: 0;
+          .checklist-square{
+            img{
+              border: .2rem solid $gray-1000;
+              width: 2.5rem;
+              height: 2.5rem;
+              padding: .4rem;
+            }
+          }
+        }
+      }
+    } // .row end  
+  } // .container end
+}
+
+@media (max-width: 725px) {
+  .squares-block{
+    display: none;
+    visibility: hidden;
+  }
+
+  .container{
+    .row{
+      min-height: min-content;
+      max-height: 28rem;
+      perspective: 43rem;
+      background-color: transparent;
+      .form-block.sign-up,.form-block.login{
+        position: absolute;
+        transition: all .3s ease-in-out;
+        &.login{
+          z-index: 1;
+        }
+      }
+    }
+    .form-block{
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem !important;
+    }
+    &.signUp{
+      .row{
+        .form-block.sign-up{
+          transform: rotateY(0);
+        }
+        .form-block.login{
+          transform: rotateY(180deg);
+          backface-visibility: hidden;
+        }
+      }
+    }
+    &.login{
+      .row{
+        .form-block.sign-up{
+          transform: rotateY(-180deg);
+        }
+        .form-block.login{
+          transform: rotateY(0deg);
+        }
       }
     }
   }

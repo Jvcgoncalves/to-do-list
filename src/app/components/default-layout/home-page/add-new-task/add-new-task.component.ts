@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 import { NgxMaskDirective } from 'ngx-mask';
 import { UserTasksService } from '../../../../services/user-tasks.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-new-task',
@@ -16,10 +17,11 @@ export class AddNewTaskComponent {
   formController = new FormGroup({
     name: new FormControl('',[Validators.required]),
     description: new FormControl('',[Validators.required]),
-    delivery_date: new FormControl('',[Validators.required,Validators.minLength(10)]),
+    delivery_date: new FormControl('',[Validators.required, Validators.minLength(10)], ),
   });
   resetForm: boolean = false;
   responseOk: boolean | null = null;
+  @ViewChild("resetFormInput") resetFormInput!: ElementRef;
 
   constructor(private userTasksService: UserTasksService, private activatedRouter: ActivatedRoute) { }
 
@@ -37,15 +39,25 @@ export class AddNewTaskComponent {
         setTimeout(()=>{
           this.responseOk = null
         }, 5000)
+        this.resetForm = (this.resetFormInput.nativeElement as HTMLInputElement).checked
         if(this.resetForm) this.formController.reset()
-      }).catch(e => {
+        }).catch(e => {
         this.responseOk = false
       })
-
   }
 
   setResetForm(){
-    this.resetForm = !this.resetForm
+    if((this.resetFormInput.nativeElement as HTMLInputElement).checked !== this.resetForm){
+      this.resetForm = (this.resetFormInput.nativeElement as HTMLInputElement).checked
+    }
+    this.resetForm = !this.resetForm;
+    (this.resetFormInput.nativeElement as HTMLInputElement).checked = this.resetForm;
+  }
+
+  onEnterKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.setResetForm();
+    }
   }
 
   controlTypingData(ev: Event){

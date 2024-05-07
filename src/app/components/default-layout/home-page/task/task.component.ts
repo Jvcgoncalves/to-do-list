@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserTasksService } from '../../../../services/user-tasks.service';
-import { UserTasks } from '../../../../interfaces/user-tasks';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
+import { UserTasksService } from '../../../../services/user-tasks.service';
+import { UserTasks } from '../../../../interfaces/user-tasks';
 import { LoaderComponent } from '../../../common/loader/loader.component';
 
 @Component({

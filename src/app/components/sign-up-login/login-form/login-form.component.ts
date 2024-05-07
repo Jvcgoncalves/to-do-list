@@ -33,9 +33,7 @@ export class LoginFormComponent implements OnInit {
       email: this.formGroupController.value.email ?? '', 
       password: this.formGroupController.value.password ?? '' 
     }).then(res =>{
-      console.log(res);
       this.userData = res
-      console.log(this.userData);
 
       if(typeof this.userData !== "string"){
         this.router.navigate(["user-logged",`${this.userData._id}`,"tasks"])

@@ -16,6 +16,10 @@
     &:hover{
       transform: scale(1.05);
     }
+    &:focus{
+      transform: scale(1.05);
+      box-shadow: 0 0 0 .25rem #9147ff79;
+    }
   }
 
   h3.fs-3{
@@ -52,6 +56,10 @@
       @include font-style($prompt, 1.15rem, 300, $light-font-color);
       line-height: 1.75rem;
       justify-self: center;
+      &:focus{
+        transform: scale(1.05);
+        box-shadow: 0 0 0 .25rem #9147ff79;
+      }
     }
 
     .checkbox-bg{

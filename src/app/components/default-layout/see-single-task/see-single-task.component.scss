@@ -28,7 +28,7 @@
         white-space: wrap;
         text-wrap: wrap;
         text-overflow: ellipsis;
-        max-width: 20rem;
+        max-width: 30rem;
         width: 100%;
         overflow: hidden;
       }
@@ -150,6 +150,10 @@
       &:hover{
         transform: scale(1.1);
       }
+      &:focus{
+        transform: scale(1.05);
+        box-shadow: 0 0 0 .25rem #9147ff79;
+      }
 
       &:not(:last-child){
         background-color: $purple-900;
@@ -162,6 +166,10 @@
         background-color: $dark-red;
         border-color: $dark-red;
         filter: drop-shadow( 0 0 .225rem $dark-red) brightness(.9);
+        &:focus{
+          transform: scale(1.05);
+          box-shadow: 0 0 0 .25rem #d6200079;
+        }
       }
     }
   }

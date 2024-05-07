@@ -1,0 +1,27 @@
+<div class="bg-div d-grid">
+  <div class="confirm-message p-4 rounded-3">
+    <p>
+      Para confirmar suas alterações, digite sua senha atual
+    </p>
+    <form
+    (submit)="confirmPasswordFuncion($event)"
+    >
+      <input #passwordInput 
+      type="password" 
+      class="confirm-password-input w-100 my-2 form-control" 
+      placeholder="Sua senha atual"
+      required
+      tabindex="1"
+      >
+      <div class="d-flex justify-content-center gap-3 mt-3">
+        <button class="btn btn-primary confirm-button" type="submit" tabindex="1">
+          Confirmar
+        </button>
+        <button type="button" class="btn btn-primary cancel-button" (keypress)="cancelOperationByKeyboard($event)" (click)="cancelOperationFunction()" tabindex="1">
+          Cancelar
+        </button>
+      </div>
+    </form>
+    
+  </div>
+</div>

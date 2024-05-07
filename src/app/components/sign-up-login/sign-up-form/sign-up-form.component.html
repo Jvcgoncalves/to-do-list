@@ -1,7 +1,7 @@
 <h2 class="page-title mb-2 text-center">{{titleMessage}}</h2>
 <form [formGroup]="formGroupController" id="sign-up-form" (submit)="submitFormAndSignUp()" *ngIf="signUpResponse !== 'user registed'; else userRegisteredResponse">
   <div class="mb-1">
-    <label for="sign_up_username" class="form-label">Nome de usuário</label>
+    <label for="sign_up_username" class="form-label mb-1">Nome de usuário</label>
     <input type="text" id="sign_up_username" class="form-control" required placeholder="Joaozinho"
     formControlName="userName"
     (keypress)="controlInput($event)"
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="mb-1">
-    <label for="sign_up_email" class="form-label">Email</label>
+    <label for="sign_up_email" class="form-label mb-1">Email</label>
     <input type="email" id="sign_up_email" class="form-control" required placeholder="email@email.com"
     formControlName="email"
     />
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="mb-1">
-    <label for="sign_up_password" class="form-label">Senha</label>
+    <label for="sign_up_password" class="form-label mb-1">Senha</label>
     <input type="password" id="sign_up_password" class="form-control" required
     formControlName="password"
     />

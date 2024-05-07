@@ -2,9 +2,9 @@
 @import "../../../../sass/variables/fonts/fonts.scss";
 
 .error-block{
-  height: 1.25rem;
+  height: min-content;
+  min-height: 1.25rem;
   vertical-align: middle;
-  line-height: 1.25rem;
   .error-message{
     @include font-style( $prompt, .75rem, normal, $light-red )
   }
@@ -18,7 +18,7 @@
     border-width: .15rem;
     max-width: 12rem;
     min-width: 8rem;
-    @include font-style($prompt, 1.15rem, 400,$dark-font-color);
+    @include font-style($prompt, 1rem, 400,$dark-font-color);
     z-index: 1;
     transition: .3s ease-in-out;
 
@@ -45,7 +45,7 @@
 }
 
 .page-title{
-  @include font-style($prompt, 2.75rem, 300,$purple-700)
+  @include font-style($prompt, 2.5rem, 300,$purple-700)
 }
 
 #sign-up-form{
@@ -59,7 +59,7 @@
   }
 
   .form-label{
-    @include font-style($prompt, 1.15rem, 400,$dark-font-color)
+    @include font-style($prompt, 1rem, 400,$dark-font-color)
   }
 
   .form-control{
@@ -74,7 +74,7 @@
     border-width: .15rem;
     max-width: 12rem;
     min-width: 8rem;
-    @include font-style($prompt, 1.15rem, 400,$dark-font-color);
+    @include font-style($prompt, 1rem, 400,$dark-font-color);
     z-index: 1;
     transition: .3s ease-in-out;
 
@@ -101,7 +101,7 @@
 
   #go-to-login,#go-to-register{
     background-color: transparent;
-    @include font-style($prompt, 1rem, 400,$dark-font-color);
+    @include font-style($prompt, .9rem, 400,$dark-font-color);
     border-color: transparent;
     max-width: 12rem;
     min-width: 8rem;
@@ -112,4 +112,76 @@
       text-decoration: underline;
     }
   }
+}
+
+@media (max-width: 1024px) {
+  .userRegistered{
+    .redirect-btn{
+      font-size: 1rem;
+    } // .login-btn end
+  }
+  
+  .page-title{
+    font-size: 2.25rem;
+  }
+  
+  #sign-up-form{
+    .forget-password{
+      font-size: .9rem;
+    }
+  
+    .form-label{
+      font-size: 1rem;
+      margin-bottom: .25rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: 1rem;
+    } 
+  
+    #go-to-login,#go-to-register{
+      font-size: .9rem;
+    }
+  }
+}
+
+@media (max-width: 867px){
+  .error-block{
+    .error-message{
+      font-size: .65rem;
+    }
+  }
+  .page-title{
+    font-size: 1.75rem;
+  }
+
+  #sign-up-form{
+    .forget-password{
+      font-size: .9rem;
+    }
+
+    .form-control{
+      font-size: .9rem;
+
+    }
+  
+    .form-label{
+      font-size: .9rem;
+      margin-bottom: .25rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: .9rem;
+      max-width: 8rem;
+      min-width: 6rem;
+    } 
+  
+    #go-to-login,#go-to-register{
+      font-size: .8rem;
+    }
+  }
+}
+
+@media (max-width: 725px) {
+  
 }

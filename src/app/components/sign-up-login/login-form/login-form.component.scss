@@ -9,21 +9,21 @@
 }
 
 .page-title{
-  @include font-style($prompt, 2.75rem, 300,$purple-700)
+  @include font-style($prompt, 2.5rem, 300,$purple-700)
 }
 
 #login-form{
   .forget-password{
     background-color: transparent;
     border-color: transparent;
-    @include font-style($prompt, 1rem, 400,$dark-font-color);
+    @include font-style($prompt, .9rem, 400,$dark-font-color);
     &:hover{
       text-decoration: underline;
     }
   }
 
   .form-label{
-    @include font-style($prompt, 1.15rem, 400,$dark-font-color)
+    @include font-style($prompt, 1rem, 400,$dark-font-color)
   }
 
   .form-control{
@@ -38,7 +38,7 @@
     border-width: .15rem;
     max-width: 12rem;
     min-width: 8rem;
-    @include font-style($prompt, 1.15rem, 400,$dark-font-color);
+    @include font-style($prompt, 1rem, 400,$dark-font-color);
     z-index: 1;
     transition: .3s ease-in-out;
 
@@ -65,7 +65,7 @@
 
   #go-to-login,#go-to-register{
     background-color: transparent;
-    @include font-style($prompt, 1rem, 400,$dark-font-color);
+    @include font-style($prompt, .9rem, 400,$dark-font-color);
     border-color: transparent;
     max-width: 12rem;
     min-width: 8rem;
@@ -77,3 +77,73 @@
     }
   }
 } // #go-to... end
+
+@media (max-width: 1025px) {
+  .error-block{
+    height: 1rem;
+    .error-message{
+      @include font-style( $prompt, 1rem, normal, $light-red )
+    }
+  }
+  
+  .page-title{
+    font-size: 2.25rem;
+
+  }
+  
+  #login-form{
+    .forget-password{
+      font-size: .9rem;
+    }
+  
+    .form-label{
+      font-size: 1rem;
+      margin-bottom: .25rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: 1rem;
+    } 
+  
+    #go-to-login,#go-to-register{
+      font-size: .9rem;
+    }
+  } // #go-to... end
+}
+
+@media (max-width: 867px){
+  .error-block{
+    .error-message{
+      font-size: .65rem;
+    }
+  }
+  .page-title{
+    font-size: 1.75rem;
+  }
+
+  #login-form{
+    .forget-password{
+      font-size: .9rem;
+    }
+
+    .form-control{
+      font-size: .9rem;
+
+    }
+  
+    .form-label{
+      font-size: .9rem;
+      margin-bottom: .25rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: .9rem;
+      max-width: 8rem;
+      min-width: 6rem;
+    } 
+  
+    #go-to-login,#go-to-register{
+      font-size: .8rem;
+    }
+  }
+}

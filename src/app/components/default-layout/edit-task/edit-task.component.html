@@ -1,8 +1,8 @@
 <div class="container">
-  <button (click)="backPage()" class="btn btn-primary back-page w-25 d-inline-block">
+  <button (click)="backPage()" class="btn btn-primary back-page w-25 d-inline-block" tabindex="0">
     Voltar a tela anterior
   </button>
-  <h3 class="fs-3 text-center w-50 d-inline-block mb-5">
+  <h3 class="fs-3 text-center w-50 d-inline-block mb-5" >
     Editar tarefas
   </h3>
   <form
@@ -39,9 +39,9 @@
           {{formController.value?.done ? 'Feita' : 'A fazer'}}
         </label>
         <input id="status" type="checkbox" class="visually-hidden d-none"
-        [checked]="formController.value?.done"
+        [checked]="radioInputStatus"
         >
-        <div class="checkbox-bg mx-auto" (click)="setTaskStatus()">
+        <div class="checkbox-bg mx-auto" (click)="setTaskStatus()" (keydown)="onEnterKeyDown($event)" tabindex="0">
           <div class="radio"></div>
         </div>
       </div>

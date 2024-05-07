@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UserTasksService } from '../../../services/user-tasks.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { UserTasks } from '../../../interfaces/user-tasks';
 import { CommonModule, Location } from '@angular/common';
+
+import { UserTasks } from '../../../interfaces/user-tasks';
+import { UserTasksService } from '../../../services/user-tasks.service';
 import checkTaskTime from '../../../../scripts/checkTaskTime';
 
 @Component({
@@ -42,6 +43,8 @@ export class SeeSingleTaskComponent implements OnInit {
       this.checkTaskTime();
       this.setPathToEditTask();
     }).catch(e =>{
+      console.log(e);
+      
       this.getResponseOnGetError = true;
     })
   }
@@ -50,6 +53,12 @@ export class SeeSingleTaskComponent implements OnInit {
     if(this.doneStatusInput.nativeElement.className.includes("changing-done-status")) return
     this.inputControll = !this.inputControll;
     this.editTask();
+  }
+
+  onEnterKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.setTaskStatus();
+    }
   }
 
   editTask(){
@@ -99,8 +108,9 @@ export class SeeSingleTaskComponent implements OnInit {
       this.overdueOrOnTimeTaskStatus = "Entregue"
       return
     }
+    
     this.overdueOrOnTimeTaskStatus = checkTaskTime({register_date: this.task.register_date, delivery_date: this.task.delivery_date});
-    if(this.overdueOrOnTimeTaskStatus === "Dentro do prazo" || this.overdueOrOnTimeTaskStatus === "Último dia"){
+    if(this.overdueOrOnTimeTaskStatus === "Dentro do prazo"){
       this.overdueOrOnTimeTaskClassToAdd = "on-time";
     } else if(this.overdueOrOnTimeTaskStatus === "Em atraso") {
       this.overdueOrOnTimeTaskClassToAdd ="overdue";

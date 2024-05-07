@@ -1,10 +1,12 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 import { UserTasks } from '../../../interfaces/user-tasks';
 import { UserTasksService } from '../../../services/user-tasks.service';
-import { ActivatedRoute } from '@angular/router';
 import { NgxMaskDirective } from 'ngx-mask';
+import formatDate from '../../../../scripts/formatDate';
 
 @Component({
   selector: 'app-edit-task',
@@ -15,6 +17,7 @@ import { NgxMaskDirective } from 'ngx-mask';
 })
 export class EditTaskComponent implements OnInit {
   formController!: FormGroup;
+  radioInputStatus!: boolean;
   taskData!: UserTasks;
   getErrorOnEdit: boolean = false;
   getSameTaskData: boolean = false;
@@ -37,12 +40,15 @@ export class EditTaskComponent implements OnInit {
   }
 
   setFormController(){
+    
     this.formController = new FormGroup({
       name: new FormControl(this.taskData.name),
-      delivery_date: new FormControl(this.taskData.delivery_date),
+      delivery_date: new FormControl(formatDate({date: this.taskData.delivery_date})),
       description: new FormControl(this.taskData.description),
       done: new FormControl(this.taskData.done)
     });
+
+    this.radioInputStatus = this.formController.value.done;
   }
 
   handleSubmit(){
@@ -57,10 +63,9 @@ export class EditTaskComponent implements OnInit {
     if(delivery_date === this.taskData.delivery_date){
       this.dataNotChangedInteraton++;
     } 
-    if(done === this.taskData.done){
+    if(done === this.radioInputStatus){
       this.dataNotChangedInteraton++;
     }
-    console.log(this.dataNotChangedInteraton);
 
     if(this.dataNotChangedInteraton === 4){
       this.getSameTaskData = true;
@@ -71,6 +76,8 @@ export class EditTaskComponent implements OnInit {
       return;
     }
 
+    this.formController.value.done = this.radioInputStatus;
+
     this.userTaskService.editTask({ 
       userId: this.taskData.userId,
       taskId: this.taskData._id,
@@ -78,7 +85,8 @@ export class EditTaskComponent implements OnInit {
     }).then( res =>{
       if(res === "can't edit task" || res === "user/task id invalid"){
         this.getErrorOnEdit = true;
-      } else {
+      } else if(res === "task edited") {
+        alert("Tarefa editada com sucesso!")
         this.backPage()
       }
     }).catch( err =>{
@@ -91,6 +99,12 @@ export class EditTaskComponent implements OnInit {
   }
 
   setTaskStatus(){
-    this.formController.value.done = !this.formController.value.done;
+    this.radioInputStatus = !this.radioInputStatus;
+  }
+
+  onEnterKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.setTaskStatus();
+    }
   }
 }

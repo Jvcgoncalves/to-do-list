@@ -90,15 +90,15 @@
     <div class="reset-form-on-submit-block d-flex gap-2">
       <input
         type="checkbox"
-        [checked]="resetForm"
         class="visually-hidden d-none"
         id="reset-form"
+        #resetFormInput
       />
-      <div class="checkbox" (click)="setResetForm()">
+      <div class="checkbox" (click)="setResetForm()" (keydown)="onEnterKeyDown($event)" tabindex="0">
         <div class="checkbox-status"></div>
       </div>
-      <label class="reset-form-label" for="reset-form"
-        >Limpar fomulário aonde enviar</label
+      <label class="reset-form-label" for="reset-form">
+        Limpar fomulário aonde enviar</label
       >
     </div>
     <button
