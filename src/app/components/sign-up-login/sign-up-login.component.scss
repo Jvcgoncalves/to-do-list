@@ -85,6 +85,56 @@
   }
 }
 
+@media (min-width: 1825px) {
+  .container{
+    .row{
+      max-height: 38rem;
+    }
+  }
+}
+
+@media (min-width: 1680px) and (max-width: 1825px) {
+  .container{
+    .row{
+      max-height: 35rem;
+      .squares-block{
+        .login-page-squares{
+          .checklist-square{
+            width: 8.25rem;
+            height: 8.25rem;
+            place-self: center;
+          }
+        }
+  
+        .sign-up-page-squares{
+          transform: translateY(-200%);
+          transition: 2s ease-in-out;
+          .checklist-square{
+            width: 100%;
+            max-width: 18.75rem;
+            img{
+              border: .2rem solid $gray-1000;
+              width: 3.5rem;
+              height: 3.5rem;
+              padding: .4rem;
+            }
+            span{
+              @include font-style($sriracha, 2.5rem, 100,$gray-1000);
+            }
+          }
+        }
+      }
+  
+      .form-block{
+        background-color: $purple-100;
+        height: 100%;
+        padding: 1.5rem 3rem;
+        transition: all 0s ease-in-out;
+      }  // .form-block end
+    } // .row end  
+  } // .container end
+}
+
 @media (max-width: 1025px) {
   .container.d-grid{
     max-width: 90%;

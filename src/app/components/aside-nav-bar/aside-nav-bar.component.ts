@@ -17,7 +17,7 @@ import { Users } from '../../interfaces/users';
             (click)="signOut($event)"
             >
               <img [src]="liElement.imgSrc" [alt]="liElement.alt" class="me-2">
-              {{liElement.text}}
+              <span> {{ liElement.text }} </span>
             </a>
           </li>
         </ul>

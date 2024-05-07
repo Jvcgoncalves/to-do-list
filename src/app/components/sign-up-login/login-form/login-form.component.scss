@@ -77,6 +77,55 @@
     }
   }
 } // #go-to... end
+@media (min-width: 1825px){
+  #login-form{
+    .forget-password{
+      font-size: 1.15rem;
+    }
+
+    .form-label{
+      font-size: 1.25rem;
+    }
+  
+    .form-control{
+      font-size: 1.25rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: 1.25rem;
+    } 
+  
+    #go-to-login,#go-to-register{
+      font-size: 1.15rem;
+    }
+  }
+}
+
+@media (min-width: 1680px) and (max-width: 1825px) {
+  .page-title{
+    font-size: 2.75rem;
+  }
+  
+  #login-form{
+  
+    .form-label{
+      font-size: 1.15rem;
+    }
+  
+    .form-control{
+      font-size: 1.15rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: 1.15rem;
+    } // .login-btn end
+  
+    #go-to-login,#go-to-register{
+      font-size: 1rem;
+    }
+  }
+}
+
 
 @media (max-width: 1025px) {
   .error-block{

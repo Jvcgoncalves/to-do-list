@@ -114,6 +114,54 @@
   }
 }
 
+@media (min-width: 1825px) {
+  #sign-up-form{
+    .form-label{
+      font-size: 1.25rem;
+    }
+  
+    .form-control{
+      font-size: 1.25rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: 1.25rem;
+    } 
+
+    #go-to-login,#go-to-register{
+      font-size: 1.15rem;
+    }
+  }
+}
+
+@media (min-width: 1680px) and (max-width: 1825px) {
+  .userRegistered{
+    font-size: 1.25rem;
+  }
+  
+  .page-title{
+    font-size: 2.75rem;
+  }
+  
+  #sign-up-form{
+    .form-label{
+      font-size: 1.15rem;
+    }
+  
+    .form-control{
+      font-size: 1.15rem;
+    }
+  
+    .login-btn,.sign-up-btn{
+      font-size: 1.15rem;
+    } // .login-btn end
+  
+    #go-to-login,#go-to-register{
+      font-size: 1rem;
+    }
+  }
+}
+
 @media (max-width: 1024px) {
   .userRegistered{
     .redirect-btn{
