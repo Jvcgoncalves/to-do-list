@@ -29,6 +29,25 @@
   }
 }
 
+@media (min-width: 1400px) {
+  .aside-menu{
+    max-width: 100%;
+    .navbar{
+      .navbar-nav{
+        .nav-item{
+          cursor: pointer;
+          .nav-link{
+            img{
+              width: 2.75rem
+            }
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 992px) {
   .aside-menu{
     padding-left: calc($padding-x-desktop - 2rem);
@@ -78,7 +97,7 @@
               display: none;
             }
             img{
-              width: 2rem;
+              width: 1.75rem;
               height: 100%;
             }
             font-size: 1rem;

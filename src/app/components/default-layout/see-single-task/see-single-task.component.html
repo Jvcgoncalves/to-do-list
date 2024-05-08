@@ -1,9 +1,5 @@
 <div class="container">
-  <div  *ngIf="!task && !getResponseOnGetError && !taskNotFound; else loadingComplete" class="loader d-grid">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
+  <app-loader *ngIf="!task && !getResponseOnGetError && !taskNotFound; else loadingComplete"></app-loader>
   <ng-template #loadingComplete>
     <div class="error-block" *ngIf="getResponseOnGetError || taskNotFound; else taskFound">
       <p *ngIf="taskNotFound !== true; else taskNotFoundTrue">
@@ -26,7 +22,7 @@
           </h2>
           <div class="task-action-buttons d-flex gap-4">
             <button (click)="backPage()" class="btn btn-primary" tabindex="0">
-              Voltar a tela inicial
+              Voltar
             </button>
             <a class="btn btn-primary" [routerLink]="pathToEditTask" tabindex="0">
               Editar

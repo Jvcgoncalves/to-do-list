@@ -128,7 +128,19 @@
       column-gap: 2rem !important;
   
       .task-block{
-    
+        .task-title{
+          font-size: 1.4rem;
+        }
+
+        .description{
+          .task-description-title,.task-description{
+            font-size: 1rem;
+          }
+          .task-description{
+            font-size: .95rem;
+          }
+        }
+
         .task-dates-block{
           .tast-dates{
             font-size: .9rem;
@@ -145,17 +157,49 @@
   }
 }
 
-// @media (max-width:825px) {
-//   .main-content{
+@media (max-width: 585px) {
+  .main-content{
+    .search-form{
+      .input-block{
+        height: 2.25rem;
+        margin-top: .5rem;
 
-//     .search-form{
-//       .input-block{
-//         max-width: 18rem;
-//       }
-//     }
+        .form-control{
+          width: 100%;
+          height: 100%;
+          background-color: $gray-200;
+          border: .1rem solid $purple-800;
+          padding-right: 2.1rem;
+  
+          &:focus{
+            box-shadow: none;
+          }
+        }
+        .floating-label{
+          position: absolute;
+          padding: 1rem;
+          bottom: -.55rem;
+          z-index: 2;
+          font-size: .85rem;
+        }
+        & > .form-control:focus~.floating-label, & > .form-control:not(:placeholder-shown)~.floating-label{
+          transform: translateY(-170%) translateX(.75rem);
+          color: $dark-font-color;
+          padding: 0 .5rem;
+          background-color: $gray-200;
+        }
+  
+        .search-icon{
+          width: 1.25rem;
+          position: absolute;
+          bottom: .5rem;
+          right: .5rem;
+        }
+      }
+    }
 
-//     .content{
-//       grid-template-columns: 1fr ;
-//     }
-//   }
-// }
+    .content{
+      grid-template-columns: 1fr;
+    }
+  }
+}

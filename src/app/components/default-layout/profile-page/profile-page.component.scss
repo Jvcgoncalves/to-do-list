@@ -16,7 +16,7 @@
     background-color: $purple-800;
     border-color: $purple-800;
     box-shadow:  0 0 .225rem $purple-800;
-    max-width: 12rem;
+    max-width: 5.5rem;
     &:hover{
       transform: scale(1.05);
     }
@@ -86,6 +86,106 @@
           background-color: transparent;
           .bi.bi-pencil-square{
             font-size: 1.35rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .container{
+    .error-on-edit{
+      font-size: 1.5rem;
+    }
+  
+    .btn.btn-primary{
+     font-size: 1.25rem;
+     max-width: max-content;
+      &.delete-profile-button{
+        max-width: max-content;
+      }
+    }
+  
+    .response-error{
+      font-size: 1.5rem
+    }
+  
+    .content-body{
+      .form{
+        .form-label{
+          font-size: 1.25rem;
+        }
+        
+        .input-block{
+          flex-wrap: nowrap;
+          width: 100%;
+          min-height: 2.375rem;
+  
+          .form-control{
+            font-size: 1.25rem;
+          }
+  
+          .edit-button{
+            .bi.bi-pencil-square{
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .container{
+    padding: 1.5rem calc($padding-x-desktop - 2rem);
+  }
+}
+
+@media (max-width: 825px) {
+  .container {
+    max-width: 85%;
+    padding: 1.5rem 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .container{
+    .profile-header{
+      margin-bottom: 1.5rem !important;
+      .back-page{
+        order: 1;
+        width: max-content;
+        font-size: .9rem;
+      }
+      .page-title{
+        order: 3;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .delete-profile-button{
+        order: 2;
+        width: max-content;
+        font-size: .9rem;
+      }
+    }
+
+    .content-body{
+      .form{
+        .form-label{
+          font-size: .9rem;
+        }
+        
+        .input-block{
+          .form-control{
+            font-size: .9rem;
+          }
+  
+          .edit-button{
+            .bi.bi-pencil-square{
+              font-size: 1.2rem;
+            }
           }
         }
       }

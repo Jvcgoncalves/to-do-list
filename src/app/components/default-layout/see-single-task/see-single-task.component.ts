@@ -5,11 +5,12 @@ import { CommonModule, Location } from '@angular/common';
 import { UserTasks } from '../../../interfaces/user-tasks';
 import { UserTasksService } from '../../../services/user-tasks.service';
 import checkTaskTime from '../../../../scripts/checkTaskTime';
+import { LoaderComponent } from '../../common/loader/loader.component';
 
 @Component({
   selector: 'app-see-single-task',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, LoaderComponent],
   templateUrl: './see-single-task.component.html',
   styleUrl: './see-single-task.component.scss'
 })

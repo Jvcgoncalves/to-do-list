@@ -24,6 +24,12 @@ export class DefaultlayoutComponent implements OnInit {
   constructor(private userService: UsersService, private workRoutes: Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem("userLoggedId") || !localStorage.getItem("userLogged")){
+      console.log();
+      
+      this.workRoutes.navigate([""]);
+      alert("Usuário não logado!")
+    }
     const userId = this.router.snapshot.params['userId']
     
     this.userService.getUserData({userId}).then(res =>{

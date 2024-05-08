@@ -5,11 +5,7 @@
 .container{
   padding: 2rem $padding-x-desktop;
   width: 100%;
-}
-
-.loader{
-  place-content: center;
-  min-height: 100%;
+  height: 100%;
 }
 
 .error-block{
@@ -28,7 +24,7 @@
         white-space: wrap;
         text-wrap: wrap;
         text-overflow: ellipsis;
-        max-width: 30rem;
+        max-width: 60%;
         width: 100%;
         overflow: hidden;
       }
@@ -115,8 +111,10 @@
     }
     p.task-description{
       @include font-style($prompt, 1rem, 400, $dark-font-color);
-      text-wrap: wrap;
       margin-left: 1.5rem;
+      text-wrap: wrap;
+      word-wrap: break-word;
+      white-space: wrap;
     }
   }
 
@@ -179,3 +177,213 @@
     color: $dark-red;
   }
 }
+
+@media (min-width: 1400px) {
+  .container{
+    max-width: 100%;
+  }
+
+  .error-block{
+    font-size: 1.5rem;
+  }
+
+  .main-content{
+    .task-name-block{
+      .name-time-block{
+        flex-wrap: wrap;
+        .task-name{
+          font-size: 2.75rem;
+          max-width: 65%;
+        }
+      }
+  
+      .checkbox-bg{
+        width: 5.5rem;
+        height: 2.5rem;
+        background-color: $gray-100;
+        box-shadow: 0 0 .5rem $gray-500;
+        border-radius: 2rem;
+        padding: .35rem;
+        cursor: pointer;
+      }
+      
+      .status-text{
+        font-size: 1.25rem;
+        font-weight: 500;
+        min-width: 4.5rem;
+      }
+  
+      .radio{
+        width: 1.75rem;
+        &::after{
+          left: 43%;
+          bottom: .3rem;
+          width: .2rem;
+          height: 70.5%;
+        }
+        &::before{
+          right: 41%;
+          bottom: .3rem;
+          width: .2rem;
+          height: 70.5%;
+        }
+      }
+
+      input#status:checked + .checkbox-bg{
+        .radio{
+          transform: translateX(170%);
+          &::after{
+            left: 35%;
+            bottom: .4rem;
+            width: .6rem;
+            height: 75%;
+          }
+        }
+      }
+    } // .task-name-block end
+  
+    .task-description-block{
+      h4{
+        font-size: 1.4rem;
+      }
+      p.task-description{
+        font-size: 1.25rem;
+        margin-left: 1.5rem;
+      }
+    }
+  
+    .dates{
+      p{
+        font-size: 1.35rem;
+        font-weight: 300;
+      }
+    }
+  
+    .task-action-buttons{
+      .btn-primary{
+        font-size: 1.25rem;
+      }
+    }
+  
+    .error-block{
+      font-size: 1rem;
+    }
+  }
+  
+}
+
+@media (max-width: 992px) {
+  .container{
+    padding: 1.5rem calc($padding-x-desktop - 2rem);
+  }
+
+  .main-content{
+
+    .task-name-block{
+      .name-time-block{
+        flex-wrap: wrap;
+        .task-name{
+          font-size: 1.75rem; 
+          max-width: 100%;
+        }
+      }
+    }
+    .dates{
+      p{
+        font-size: .9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 825px) {
+  .container {
+    max-width: 85%;
+    padding: 1.5rem 0;
+  }
+
+  .main-content{
+    .task-name-block{
+      .name-time-block{
+        flex-wrap: wrap;
+        .task-name{
+          font-size: 1.75rem;
+        }
+      }
+  
+      .checkbox-bg{
+        width: 4rem;
+        height: 1.75rem;
+      }
+      
+      .status-text{
+        font-size: 1rem;
+        min-width: 3.4rem;
+      }
+  
+      .radio{
+        width: 1.15rem;
+        &::after{
+          bottom: .15rem;
+          width: .2rem;
+          height: 75.5%;
+        }
+        &::before{
+          bottom: .15rem;
+          width: .2rem;
+          height: 75.5%;
+        }
+      }
+
+      input#status:checked + .checkbox-bg{
+        .radio{
+          transform: translateX(190%);
+          &::after{
+            bottom: .275rem;
+          }
+        }
+      }
+    } // .task-name-block end
+  
+    .task-description-block{
+      h4{
+        font-size: 1rem
+      }
+      p.task-description{
+        font-size: .9rem;
+        margin-left: 0;
+        padding: 0;
+      }
+    }
+  
+    .dates{
+      flex-direction: column;
+      p{
+        max-width: 15rem;
+        text-align: center;
+      }
+    }
+  
+    .task-action-buttons{
+      gap: 1rem !important;
+
+      .btn-primary{
+        font-size: .9rem;
+      }
+    }
+  
+    .error-block{
+      font-size: 1rem;
+      color: $dark-red;
+    }
+  }
+}
+
+// @media (max-width: 425px) {
+//   .main-content{
+//     .task-action-buttons{
+
+//     }
+//   }
+
+// }

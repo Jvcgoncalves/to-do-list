@@ -78,3 +78,35 @@
     }
   }
 }
+
+@media (max-width: 585px){
+  .main-content{
+    .response-to-user{
+      font-size: .9rem;
+    }
+  
+    .form{
+      .row > div{
+        width: 100%;
+      }
+      .form-label{
+        font-size: .9rem
+      }
+  
+      .form-control{
+        font-size: .9rem;
+      }
+  
+      .btn.btn-primary{
+        font-size: 1rem;
+      }
+  
+      .reset-form-on-submit-block{
+        margin: .25rem 0;
+        .reset-form-label{
+          font-size: .9rem;
+        }
+      }
+    }
+  }
+}

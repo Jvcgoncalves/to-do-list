@@ -43,3 +43,25 @@
     padding: 1.5rem 0;
   }
 }
+
+@media (max-width:475px) {
+  .container{
+    .page-title{
+      font-size: 1.75rem;
+    }
+
+    .navbar{
+      .navbar-nav{
+        .nav-item{
+          .nav-link{
+            font-size: .9rem;
+            
+            &.active:after{
+              height: .12rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

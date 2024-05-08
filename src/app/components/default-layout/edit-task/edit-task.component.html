@@ -1,10 +1,12 @@
 <div class="container">
-  <button (click)="backPage()" class="btn btn-primary back-page w-25 d-inline-block" tabindex="0">
-    Voltar a tela anterior
-  </button>
-  <h3 class="fs-3 text-center w-50 d-inline-block mb-5" >
-    Editar tarefas
-  </h3>
+  <div class="header d-flex justify-content-between">
+    <button (click)="backPage()" class="btn btn-primary back-page d-inline-block" tabindex="0">
+      Voltar
+    </button>
+    <h3 class="fs-3 text-center mb-5" >
+      Editar tarefa
+    </h3>
+  </div>
   <form
     [formGroup]="formController"
     class="form d-grid row-gap-3"
@@ -36,7 +38,7 @@
       </div>
       <div class="col-2">
         <label for="status" class="status-text text-center d-block mb-1">
-          {{formController.value?.done ? 'Feita' : 'A fazer'}}
+          {{radioInputStatus ? 'Feita' : 'A fazer'}}
         </label>
         <input id="status" type="checkbox" class="visually-hidden d-none"
         [checked]="radioInputStatus"

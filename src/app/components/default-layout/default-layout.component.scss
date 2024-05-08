@@ -4,6 +4,8 @@
 
 #App{
   background-color: $gray-200;
+  min-height: 100vh;
+  min-height: 100dvh;
 
   .response-error{
     min-height: calc(100vh - 5rem);
@@ -27,6 +29,12 @@ main.d-grid{
   grid-template-columns: 250px minmax(700px, 1098px);
 }
 
+@media (min-width: 1400px) {
+  main.d-grid{
+    grid-template-columns: 300px minmax(1100px, 1600px);
+  }
+}
+
 @media (max-width: 992px) {
   main.d-grid{
     grid-template-columns: 200px minmax(500px, 1098px);
@@ -35,7 +43,7 @@ main.d-grid{
 
 @media (max-width: 825px) {
   main.d-grid{
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     margin-bottom: 4rem;
   }
 }

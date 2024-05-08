@@ -61,5 +61,46 @@
       }
     }
   }
+}
+
+@media (max-width: 475px) {
+  .header{
+    height: 4rem;
+    .navbar{
+      max-width: 85%;
+      padding: 0;
+      .nav-link{
+        .square{
+          border-width: .16.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
   
+          &::after{
+            border-width: .17rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            left: -.15rem;
+            top: -.175rem;
+            display: inline-block;
+            transition: border-color .3s ease-in-out, border-radius .5s ease-in-out, transform .3s ease-in-out;
+            z-index: 1020;
+          }
+        }
+  
+        font-size: 1.25rem;
+  
+        &:hover{
+          .square{
+            &::after{
+              border-width: .20rem;
+              top: -.9rem;
+              transform: rotateZ(40deg);
+              width: 1.25rem;
+              height: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -207,7 +207,7 @@
 
 @media (max-width: 725px) {
   .squares-block{
-    display: none;
+    display: none !important;
     visibility: hidden;
   }
 
