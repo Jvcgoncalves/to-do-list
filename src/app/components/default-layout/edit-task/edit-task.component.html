@@ -1,5 +1,11 @@
 <div class="container">
-  <div class="header d-flex justify-content-between">
+  <app-loader *ngIf="!taskData && !errorOnLoadTaskData"></app-loader>
+  <div *ngIf="errorOnLoadTaskData" class="load-data-error">
+    <span class="text-center d-block mt-3">
+      Não foi possível carregar os dados da tarefa :(
+    </span>
+  </div>
+  <div *ngIf="taskData" class="header d-flex justify-content-between">
     <button (click)="backPage()" class="btn btn-primary back-page d-inline-block" tabindex="0">
       Voltar
     </button>

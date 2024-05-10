@@ -7,12 +7,18 @@ import { TaskComponent } from './components/default-layout/home-page/task/task.c
 import { AddNewTaskComponent } from './components/default-layout/home-page/add-new-task/add-new-task.component';
 import { SeeSingleTaskComponent } from './components/default-layout/see-single-task/see-single-task.component';
 import { EditTaskComponent } from './components/default-layout/edit-task/edit-task.component';
+import { RecoverPasswordComponent } from './components/sign-up-login/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
     path: "",
     component: SignUpLoginComponent,
     title: "Logar - cadastrar"
+  },
+  {
+    path: "recover-password/:userEmail",
+    component: RecoverPasswordComponent,
+    title: "Recuperar sua senha"
   },
   {
     path: "user-logged/:userId",

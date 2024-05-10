@@ -63,6 +63,5 @@ export class AddNewTaskComponent {
   controlTypingData(ev: Event){
     ev.preventDefault()
     const inputElement = ev.target as HTMLInputElement;
-    console.log(inputElement.value);
   }
 }

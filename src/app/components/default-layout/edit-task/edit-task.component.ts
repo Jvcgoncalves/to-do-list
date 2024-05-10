@@ -7,11 +7,12 @@ import { UserTasks } from '../../../interfaces/user-tasks';
 import { UserTasksService } from '../../../services/user-tasks.service';
 import { NgxMaskDirective } from 'ngx-mask';
 import formatDate from '../../../../scripts/formatDate';
+import { LoaderComponent } from '../../common/loader/loader.component';
 
 @Component({
   selector: 'app-edit-task',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgxMaskDirective, ],
+  imports: [CommonModule, ReactiveFormsModule, NgxMaskDirective, LoaderComponent ],
   templateUrl: './edit-task.component.html',
   styleUrl: './edit-task.component.scss'
 })
@@ -19,6 +20,7 @@ export class EditTaskComponent implements OnInit {
   formController!: FormGroup;
   radioInputStatus!: boolean;
   taskData!: UserTasks;
+  errorOnLoadTaskData: boolean = false
   getErrorOnEdit: boolean = false;
   getSameTaskData: boolean = false;
   dataNotChangedInteraton: number = 0;
@@ -31,7 +33,7 @@ export class EditTaskComponent implements OnInit {
 
     this.userTaskService.getSingleTask({taskId,userId}).then(res =>{
       if(typeof res === 'string'){
-        console.log(res);
+        this.errorOnLoadTaskData = true;
         return;
       }
       this.taskData = res;
@@ -90,7 +92,7 @@ export class EditTaskComponent implements OnInit {
         this.backPage()
       }
     }).catch( err =>{
-      console.log(err);
+      this.getErrorOnEdit = true
     })
   }
 

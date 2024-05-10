@@ -21,6 +21,7 @@ export class ProfilePageComponent implements OnInit {
   getResponseError: boolean = false;
   getResponseErrorOnEdit: boolean = false;
   userData!: Users;
+  getErrorOnDelete: boolean = false;
   userPasswordToConfirmChangesOrDeleteAccount!: string;
   hasDataUpdated = {
     name: false,
@@ -136,6 +137,10 @@ export class ProfilePageComponent implements OnInit {
 
   deleteAccount(){
     this._userService.deleteUserData({userId: this.userData._id, password: this.userPasswordToConfirmChangesOrDeleteAccount}).then(res => {
+      if("user/task id invalid"){
+        this.getErrorOnDelete = true;
+      }
+
       if(res === "wrong password"){
         alert("Senha incorreta!, tente novamente")
       } 

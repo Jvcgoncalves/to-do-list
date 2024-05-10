@@ -2,6 +2,10 @@
 @import "../../../../sass/variables/fonts/fonts.scss";
 @import "../../../../sass/variables/common/common.scss";
 
+.load-data-error{
+  @include font-style($prompt, 1.25rem, 400, $dark-font-color);
+}
+
 .container{
   padding: 1.5rem $padding-x-desktop ;
   width: 100%;

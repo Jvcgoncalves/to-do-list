@@ -52,3 +52,40 @@
     }
   }
 }
+
+@media (max-width: 585px) {
+  .bg-div{
+    .confirm-message{
+      width: 20rem;
+      p{
+        font-size: .9rem;
+      }
+    }
+
+    .form-control{
+      font-size: .9rem;
+    }
+
+    .btn.btn-primary{
+      font-size: .9rem;
+    }
+  }
+}
+@media (max-width: 385px) {
+  .bg-div{
+    .confirm-message{
+      width: 15rem;
+      p{
+        font-size: .8rem;
+      }
+    }
+
+    .form-control{
+      font-size: .8rem;
+    }
+
+    .btn.btn-primary{
+      font-size: .8rem;
+    }
+  }
+}

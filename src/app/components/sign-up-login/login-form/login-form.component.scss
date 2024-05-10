@@ -8,6 +8,24 @@
   }
 }
 
+
+.alert.alert-info{
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left:50%;
+  max-width: 30rem;
+  min-width: 10rem;
+  max-height: 5rem;
+  transition: all .3s ease-in-out;
+  transform: translateY(-100%) translateX(-50%);
+  margin: 0 auto;
+  &.actived{
+    transform: translateY(1rem) translateX(-50%);
+  }
+}
+
+
 .page-title{
   @include font-style($prompt, 2.5rem, 300,$purple-700)
 }
@@ -16,6 +34,7 @@
   .forget-password{
     background-color: transparent;
     border-color: transparent;
+    width: max-content;
     @include font-style($prompt, .9rem, 400,$dark-font-color);
     &:hover{
       text-decoration: underline;
@@ -23,7 +42,7 @@
   }
 
   .form-label{
-    @include font-style($prompt, 1rem, 400,$dark-font-color)
+    @include font-style($prompt, 1rem, 300,$dark-font-color)
   }
 
   .form-control{
@@ -57,6 +76,8 @@
     
     &:hover{
       color: $light-font-color;
+      transform: scale(1.05);
+
       &::before{
         width: 100%;
       }

@@ -6,7 +6,7 @@
   padding: 2rem $padding-x-desktop;
   width: 100%;
 
-  .error-on-edit{
+  .error-on-edit-delete{
     @include font-style($prompt, 1.25rem, 400, $dark-red);
   }
 

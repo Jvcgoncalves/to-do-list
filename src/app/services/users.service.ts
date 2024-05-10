@@ -5,8 +5,8 @@ import { Users } from '../interfaces/users';
   providedIn: 'root'
 })
 export class UsersService {
-
-  url: string = "http://localhost:3000/users/";
+  //https://to-do-list-backend-livid.vercel.app/users/
+  url: string = "http://localhost:3000/users";
 
   constructor() { }
 
@@ -53,6 +53,18 @@ export class UsersService {
     })
 
     return userData.json() ?? {}
+  }
+
+  changePassword = async ({userEmail, newPassword}: { userEmail: string, newPassword: string}): Promise<string> => {
+    const response = await fetch(`${this.url}`,{
+      method: 'PUT',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userEmail, newPassword })
+    })
+
+    return response.json();
   }
 
   deleteUserData = async ({ userId, password }: {userId: string, password: string}): Promise<Users | string> => {

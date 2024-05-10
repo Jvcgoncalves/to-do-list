@@ -11,9 +11,12 @@
     </button>
   </div>
   <app-loader *ngIf="!userData && !getResponseError"></app-loader>
-  <div class="error-on-edit" *ngIf="getResponseErrorOnEdit">
-    <p>
+  <div class="error-on-edit-delete" *ngIf="getResponseErrorOnEdit || getErrorOnDelete">
+    <p *ngIf="getResponseErrorOnEdit">
       Não foi possível editar, tente novamente mais tarde
+    </p>
+    <p *ngIf="getErrorOnDelete">
+      Não foi possível deletar sua conta, tente novamente mais tarde
     </p>
   </div>
   <div class="response-error" *ngIf="getResponseError">

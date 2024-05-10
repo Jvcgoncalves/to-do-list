@@ -68,7 +68,7 @@
   
       .task-title{
         @include font-style($sriracha, 1.5rem, normal, $purple-800);
-        max-width: 80%;
+        max-width: 13rem;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -107,6 +107,40 @@
   }
 }
 
+@media (min-width: 1680px) {
+  .main-content{
+    .content{
+      column-gap: 2rem !important;
+      grid-template-columns: repeat(4, calc(25% - 1.5rem));
+
+      .task-block{
+        height: 18rem;
+
+        .task-title{
+          max-width: 15rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1679px) {
+  .main-content{
+    .content{
+      column-gap: 2rem !important;
+      grid-template-columns: repeat(3, calc(33% - 1rem));
+
+      .task-block{
+        height: 18rem;
+
+        .task-title{
+          max-width: 16rem;
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 1350px) {
   .main-content{
     .content{
@@ -130,6 +164,7 @@
       .task-block{
         .task-title{
           font-size: 1.4rem;
+          max-width: 12rem;
         }
 
         .description{
@@ -200,6 +235,36 @@
 
     .content{
       grid-template-columns: 1fr;
+
+      .task-block{
+        .task-title{
+          max-width: 20rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .main-content{
+    .content{
+      .task-block{
+        .task-title{
+          max-width: 15rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 330px) {
+  .main-content{
+    .content{
+      .task-block{
+        .task-title{
+          max-width: 12rem;
+        }
+      }
     }
   }
 }

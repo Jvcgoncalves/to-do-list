@@ -87,6 +87,7 @@
 
 @media (min-width: 1825px) {
   .container{
+    max-width: 90%;
     .row{
       max-height: 38rem;
     }
@@ -95,6 +96,7 @@
 
 @media (min-width: 1680px) and (max-width: 1825px) {
   .container{
+    max-width: 90%;
     .row{
       max-height: 35rem;
       .squares-block{
