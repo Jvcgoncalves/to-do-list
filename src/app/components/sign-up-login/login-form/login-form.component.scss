@@ -8,24 +8,6 @@
   }
 }
 
-
-.alert.alert-info{
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left:50%;
-  max-width: 30rem;
-  min-width: 10rem;
-  max-height: 5rem;
-  transition: all .3s ease-in-out;
-  transform: translateY(-100%) translateX(-50%);
-  margin: 0 auto;
-  &.actived{
-    transform: translateY(1rem) translateX(-50%);
-  }
-}
-
-
 .page-title{
   @include font-style($prompt, 2.5rem, 300,$purple-700)
 }

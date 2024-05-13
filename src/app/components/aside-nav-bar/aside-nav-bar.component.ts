@@ -62,9 +62,7 @@ export class AsideNavBarComponent implements OnInit {
 
   signOut(ev: Event){
     const currentTarget = ev.target as HTMLElement
-    
-    if(currentTarget.parentElement?.getAttribute("href") === "/" || currentTarget.getAttribute("alt") === "sign-out-icon" || currentTarget.getAttribute("href")=== "/"){
-      
+    if(currentTarget.parentElement?.getAttribute("href") === "#/" || currentTarget.getAttribute("alt") === "sign-out-icon" || currentTarget.getAttribute("href")=== "#/"){
       localStorage.setItem("userLogged","false")
       localStorage.setItem("userLoggedId",``)
     }   

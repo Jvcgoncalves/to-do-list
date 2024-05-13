@@ -29,8 +29,8 @@
           <span
             class="error-message"
             *ngIf="
-              formController.value.name?.length === 0 &&
-              formController.controls.name.touched
+              formController.controls.name.touched &&
+              (formController.value.name?.length === 0 || formController.controls.name.getError('haveOnlyWhiteSpace'))
             "
             >Campo obrigatório *</span
           >
@@ -79,8 +79,8 @@
           <span
             class="error-message"
             *ngIf="
-              formController.value.description?.length === 0 &&
-              formController.controls.description.touched
+              formController.controls.description.touched &&
+              (formController.value.description?.length === 0 || formController.controls.description.getError('haveOnlyWhiteSpace'))
             "
             >Campo obrigatório *</span
           >

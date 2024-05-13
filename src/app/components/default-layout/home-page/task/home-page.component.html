@@ -1,5 +1,16 @@
 <div class="main-content">
-  <form [formGroup]="searchTasksFormController" class="search-form mb-3">
+  <form [formGroup]="searchTasksFormController" class="search-form mb-3 d-flex align-items-center">
+    <div class="filter">
+      <button class="btn btn-primary py-0 px-2 filter-button position-relative"
+      (click)="toggleFilterOptions()"
+      (blur)="closeFilterOptions()"
+      #filterOptionsButton><i class="bi bi-funnel-fill text-dark fs-3 p-0"></i></button>
+      <div class="filter-options d-flex flex-column p-2 gap-3" #filterOptions>
+        <button class="btn btn-primary available-options" (click)="filterTasksByStatusClickFunction($event)" data-filter-by="all">Todas</button>
+        <button class="btn btn-primary available-options" (click)="filterTasksByStatusClickFunction($event)" data-filter-by="overdue">Tarefas não concluidas</button>
+        <button class="btn btn-primary available-options" (click)="filterTasksByStatusClickFunction($event)" data-filter-by="done">Tarefas concluidas</button>
+      </div>
+    </div>
     <div class="input-block">
       <input type="text" id="search-tasks-input" class="form-control"
       formControlName="searchBar"

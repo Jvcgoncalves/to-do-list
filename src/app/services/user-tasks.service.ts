@@ -5,8 +5,7 @@ import { UserTasks } from '../interfaces/user-tasks';
   providedIn: 'root'
 })
 export class UserTasksService {
-  // https://to-do-list-backend-livid.vercel.app/tasks
-  url: string = "http://localhost:3000/tasks";
+  url: string = "https://to-do-list-backend-livid.vercel.app/tasks";
 
   constructor() { }
 

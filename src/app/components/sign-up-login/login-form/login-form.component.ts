@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../../services/users.service';
@@ -21,6 +21,8 @@ export class LoginFormComponent implements OnInit {
     password: new FormControl('',[Validators.required])
   })
   serverError: boolean = false
+  @Output() emailInputValue = new EventEmitter<any>();
+
   @ViewChild("recoverPasswordMessage") recoverPasswordMessage!: ElementRef;
 
   constructor(private router: Router, private userService: UsersService) { }
@@ -43,6 +45,8 @@ export class LoginFormComponent implements OnInit {
       }
 
     }).catch(e=>{
+      console.log(e);
+      
       this.serverError = true
     })
   }
@@ -57,13 +61,10 @@ export class LoginFormComponent implements OnInit {
   goToRecoverPassword(){
     if(this.formGroupController.controls.email.valid){
       this.router.navigate(["recover-password",this.formGroupController.value.email]);
-    } else if(this.recoverPasswordMessage.nativeElement.classList.contains("active")){
+    } else if(document.querySelector(".alert.alert-info.text-center.active")){
       return;
     } else{
-      this.recoverPasswordMessage.nativeElement.classList.add("actived")
-      setTimeout(()=>{
-        this.recoverPasswordMessage.nativeElement.classList.remove("actived")
-      },3000)
+      this.emailInputValue.emit()
     }
   }
 }

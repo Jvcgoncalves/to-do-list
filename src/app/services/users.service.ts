@@ -5,8 +5,7 @@ import { Users } from '../interfaces/users';
   providedIn: 'root'
 })
 export class UsersService {
-  //https://to-do-list-backend-livid.vercel.app/users/
-  url: string = "http://localhost:3000/users";
+  url: string = "https://to-do-list-backend-livid.vercel.app/users";
 
   constructor() { }
 

@@ -35,6 +35,15 @@
 
   .form{
 
+    .error-block{
+      height: 1.25rem;
+      vertical-align: middle;
+      line-height: 1.25rem;
+      .error-message{
+        @include font-style( $prompt, .75rem, normal, $light-red )
+      }
+    }
+
     .get-error-response{
       @include font-style($prompt, 1rem, 400, $dark-red);
     }

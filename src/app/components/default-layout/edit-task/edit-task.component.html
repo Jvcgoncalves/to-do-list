@@ -41,6 +41,16 @@
           id="task-name"
           class="form-control"
         />
+        <div class="error-block">
+          <span
+            class="error-message"
+            *ngIf="
+              formController.controls?.['name']?.touched &&
+              (formController.value.name?.length === 0 || formController.controls?.['name']?.getError('haveOnlyWhiteSpace'))
+            "
+            >Campo obrigatório *</span
+          >
+        </div>
       </div>
       <div class="col-2">
         <label for="status" class="status-text text-center d-block mb-1">
@@ -68,6 +78,16 @@
         [showMaskTyped]="true"
         [value]="formController.value?.delivery_date"
       />
+      <div class="error-block">
+        <span
+          class="error-message"
+          *ngIf="
+            formController.value.delivery_date?.length === 0 &&
+            formController.controls?.['delivery_date']?.touched
+          "
+          >Campo obrigatório *</span
+        >
+      </div>
       </div>
     </div>
     <div class="row">
@@ -84,6 +104,16 @@
           placeholder="Descrição..."
           [value]="formController.value?.description"
         ></textarea>
+        <div class="error-block">
+          <span
+            class="error-message"
+            *ngIf="
+              formController.controls?.['description']?.touched &&
+              (formController.value.description.length === 0 || formController.controls?.['description']?.getError('haveOnlyWhiteSpace'))
+            "
+            >Campo obrigatório *</span
+          >
+        </div>
       </div>
     </div>
     <button [disabled]="!formController.valid" type="submit" class=" btn btn-primary d-block mx-auto">

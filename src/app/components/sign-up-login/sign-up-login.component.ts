@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
@@ -11,12 +11,24 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 })
 export class SignUpLoginComponent {
   loginOrSignUp: string = "login"
-  
+  @ViewChild("recoverPasswordMessage") recoverPasswordMessage!: ElementRef;
+
   setLoginOrSignUp = (): void => {
     if(this.loginOrSignUp === "login"){ 
-      this.loginOrSignUp = "signUp"
+      this.loginOrSignUp = "signUp";
     } else if(this.loginOrSignUp === "signUp"){
-      this.loginOrSignUp = "login"
+      this.loginOrSignUp = "login";
     }
+  }
+
+  onGoToRecoverPasswordCalled(){
+    this.toggleRecoverPasswordMessage();
+  }
+
+  toggleRecoverPasswordMessage(){
+    this.recoverPasswordMessage.nativeElement.classList.add("actived");
+    setTimeout(()=>{
+      this.recoverPasswordMessage.nativeElement.classList.remove("actived");
+    },3000);
   }
 }

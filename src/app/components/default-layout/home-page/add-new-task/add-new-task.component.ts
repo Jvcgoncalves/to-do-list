@@ -15,8 +15,8 @@ import { UserTasksService } from '../../../../services/user-tasks.service';
 })
 export class AddNewTaskComponent {
   formController = new FormGroup({
-    name: new FormControl('',[Validators.required]),
-    description: new FormControl('',[Validators.required]),
+    name: new FormControl('',[Validators.required,this.validateWhiteSpaces()]),
+    description: new FormControl('',[Validators.required,this.validateWhiteSpaces()]),
     delivery_date: new FormControl('',[Validators.required, Validators.minLength(10)], ),
   });
   resetForm: boolean = false;
@@ -46,6 +46,17 @@ export class AddNewTaskComponent {
       })
   }
 
+  validateWhiteSpaces(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const haveOnlyWhiteSpace = control.value as string;
+      if (haveOnlyWhiteSpace.trim().length === 0) {
+        return { haveOnlyWhiteSpace: true };
+      } else {
+        return null;
+      }
+    };
+  }
+
   setResetForm(){
     if((this.resetFormInput.nativeElement as HTMLInputElement).checked !== this.resetForm){
       this.resetForm = (this.resetFormInput.nativeElement as HTMLInputElement).checked
@@ -58,10 +69,5 @@ export class AddNewTaskComponent {
     if (event.key === 'Enter') {
       this.setResetForm();
     }
-  }
-
-  controlTypingData(ev: Event){
-    ev.preventDefault()
-    const inputElement = ev.target as HTMLInputElement;
   }
 }

@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { UserTasks } from '../../../interfaces/user-tasks';
@@ -42,15 +42,24 @@ export class EditTaskComponent implements OnInit {
   }
 
   setFormController(){
-    
     this.formController = new FormGroup({
-      name: new FormControl(this.taskData.name),
-      delivery_date: new FormControl(formatDate({date: this.taskData.delivery_date})),
-      description: new FormControl(this.taskData.description),
+      name: new FormControl(this.taskData.name.trim(), [Validators.required,this.validateWhiteSpaces()]),
+      delivery_date: new FormControl(formatDate({date: this.taskData.delivery_date}), [Validators.required,Validators.minLength(10), Validators.maxLength(10)]),
+      description: new FormControl(this.taskData.description.trim(), [Validators.required, Validators.minLength(1),this.validateWhiteSpaces()]),
       done: new FormControl(this.taskData.done)
-    });
-
+    });  
     this.radioInputStatus = this.formController.value.done;
+  }
+
+  validateWhiteSpaces(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const haveOnlyWhiteSpace = control.value as string;
+      if (haveOnlyWhiteSpace.trim().length === 0) {
+        return { haveOnlyWhiteSpace: true };
+      } else {
+        return null;
+      }
+    };
   }
 
   handleSubmit(){

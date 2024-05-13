@@ -34,6 +34,8 @@ export class DefaultlayoutComponent implements OnInit {
     
     this.userService.getUserData({userId}).then(res =>{
       if(typeof res === "string") {
+        console.log(res);
+        
         this.responseReturnsError = true;
         return;
       } 
