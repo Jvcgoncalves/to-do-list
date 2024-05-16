@@ -34,21 +34,25 @@ export class AddNewTaskComponent {
         description: this.formController.value.description ?? '',
         delivery_date: this.formController.value.delivery_date ?? '',
         userId: userId ?? ''
-      }).then(res => {
+      }).then(() => {
         this.responseOk = true
         setTimeout(()=>{
           this.responseOk = null
         }, 5000)
         this.resetForm = (this.resetFormInput.nativeElement as HTMLInputElement).checked
-        if(this.resetForm) this.formController.reset()
-        }).catch(e => {
+      }).catch(e => {
         this.responseOk = false
+      }).finally(() => {
+        if(this.resetForm) this.formController.reset()
       })
   }
 
   validateWhiteSpaces(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const haveOnlyWhiteSpace = control.value as string;
+      if(!haveOnlyWhiteSpace){
+        return null
+      }
       if (haveOnlyWhiteSpace.trim().length === 0) {
         return { haveOnlyWhiteSpace: true };
       } else {
